@@ -184,6 +184,9 @@ img, svg { max-width: 100%; height: auto; }
 .note b { display: block; font-weight: 500; color: var(--ink); }
 .note a { color: inherit; text-decoration-color: var(--rule); }
 .note a:hover { color: var(--seal); }
+/* the company's mark, set inline in the note that names the company */
+.note .mk-inline { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; color: var(--ink); margin-right: 1px; }
+.note .co { white-space: nowrap; }
 
 /* quoted material carries the highlighter, and only quoted material */
 .quo {
@@ -307,27 +310,9 @@ img, svg { max-width: 100%; height: auto; }
 }
 .nav a:not(.btn):hover, .nav a[aria-current="page"]:not(.btn) { color: var(--ink); }
 .nav a[aria-current="page"]:not(.btn) { box-shadow: 0 1px 0 var(--seal); }
-/* One nav item is a product, the rest are sections. Marked with a dot, not a
-   wash: the highlighter belongs under quoted material and nowhere else, and at
-   nav size a block of it reads as a marker-pen swipe rather than a decision. */
-.nav a.product {
-  color: var(--ink);
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-}
-.nav a.product::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--wash-ink);
-  flex: none;
-}
-/* the dot already marks it; the current-page rule would underline the dot too */
-.nav a.product[aria-current="page"] { box-shadow: none; text-decoration: underline;
-  text-underline-offset: 4px; text-decoration-thickness: 1px; }
+/* The nav item for the product page used to be labelled with the product's
+   name and marked with a dot. Once the masthead itself said CiteOnly, the
+   menu stopped repeating it: the item is "Product", plain like its siblings. */
 .nav a.btn { color: #f4f7f4; font-size: var(--t-small); padding: 0.52em 1.05em; }
 .nav a.btn:hover { color: #f4f7f4; }
 
@@ -860,11 +845,6 @@ section.attach { padding-top: 0; }
   }
   .masthead.js-nav .nav { display: none; }
   .masthead.js-nav .nav.open { display: flex; }
-  /* stacked, the dot would indent the product past the other labels — hang it
-     in the margin instead so all four line up on the left edge */
-  .nav a.product { position: relative; gap: 0; }
-  .nav a.product::before { position: absolute; left: -0.85em; top: 50%;
-    margin-top: -2.5px; }
 }
 
 @media (max-width: 420px) {
