@@ -1,0 +1,912 @@
+/* ---------------------------------------------------------------- tokens */
+
+:root {
+  --desk: #eeedea;
+  --sheet: #ffffff;
+  --sheet-warm: #fbf7e9;
+  --ink: #15171a;
+  --ink-2: #55595e;
+  --ink-3: #666b70;
+  --rule: #d3d3cf;
+  --rule-soft: #e2e2de;
+  --rule-strong: #bdbdb8;
+  --seal: #15171a;
+  --seal-lift: #000000;
+  --seal-wash: #f6f4ec;
+  --wash: #f4e08c;
+  --wash-ink: #9c7a12;
+  --flag: #b0361f;
+  --flag-wash: #f7e4df;
+  --deep: #15171a;
+  --deep-ink: #e9e8e4;
+  --deep-ink-2: #a2a5a3;
+
+  --serif: "Literata", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --t-display: clamp(2.6rem, 6.2vw, 4.6rem);
+  --t-display-long: clamp(2.3rem, 5vw, 3.8rem);
+  --t-h2: clamp(1.8rem, 3.4vw, 2.7rem);
+  --t-h3: clamp(1.22rem, 1.7vw, 1.45rem);
+  --t-lead: clamp(1.14rem, 1.7vw, 1.34rem);
+  --t-body: 1.0625rem;
+  --t-small: 0.9375rem;
+  --t-mono: 0.8125rem;
+  --t-stamp: 0.75rem;
+
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
+  --s6: 32px; --s7: 48px; --s8: 72px; --s9: 112px; --s10: 160px;
+
+  --track-main: 660px;
+  --track-margin: 230px;
+  --track-gap: 36px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ------------------------------------------------------------------ base */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* display rules on components otherwise beat the UA stylesheet's [hidden] */
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: 1.62;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--t-display); line-height: 1.04; letter-spacing: -0.022em; }
+h2 { font-size: var(--t-h2); line-height: 1.1; }
+h3 { font-size: var(--t-h3); line-height: 1.25; }
+
+p { margin: 0 0 var(--s5); max-width: 68ch; text-wrap: pretty; }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--ink);
+  text-decoration-color: var(--wash);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.16em;
+}
+a:hover { color: var(--ink); text-decoration-color: var(--flag); }
+
+strong { font-weight: 600; }
+
+img, svg { max-width: 100%; height: auto; }
+
+:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+/* the ring is ink; on the inverted footer it must switch to paper or vanish */
+.foot :focus-visible, .deep :focus-visible { outline-color: var(--deep-ink); }
+
+::selection { background: var(--wash); color: var(--ink); }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--sheet); color: var(--ink);
+  padding: var(--s3) var(--s5); z-index: 100;
+  border: 1px solid var(--ink);
+}
+.skip:focus { left: var(--s5); top: var(--s5); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------------------------------------- tracks */
+
+.row {
+  display: grid;
+  grid-template-columns:
+    minmax(0, var(--track-main))
+    var(--track-margin);
+  column-gap: var(--track-gap);
+  justify-content: center;
+  padding-inline: var(--s5);
+}
+
+.row > .main { grid-column: 1; min-width: 0; }
+.row > .margin { grid-column: 2; }
+
+/* A row either carries something in the margin or spans it. An empty margin
+   track leaves a third of the page dead, which is the concept failing rather
+   than restraint. */
+.row.wide {
+  grid-template-columns:
+    minmax(0, calc(var(--track-main) + var(--track-margin) + var(--track-gap)));
+}
+.row.wide > .main { grid-column: 1; }
+
+/* There is no left track. It used to carry running-head labels ("The claim",
+   "Nine more"), which were cut, and then sat empty on every row while still
+   reserving 136px, which pushed the whole composition right of centre. The
+   ordinals it also carried now hang in the main column's left margin. */
+
+.margin { padding-top: 0.35em; }
+
+/* anchor jumps must not land a note underneath the sticky masthead */
+.note[id], [id] { scroll-margin-top: 88px; }
+
+/* ------------------------------------------------------ source apparatus */
+
+/* the inline half: a mark inside running text */
+.src {
+  font-family: var(--mono);
+  font-size: 0.72em;
+  letter-spacing: 0.02em;
+  color: var(--seal);
+  text-decoration: none;
+  padding: 0 0.1em;
+  vertical-align: 0.32em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 120ms var(--ease);
+}
+.src::before { content: "["; }
+.src::after { content: "]"; }
+.src:hover, .src.lit { color: var(--flag); }
+
+/* the margin half: the source itself */
+.note {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  line-height: 1.5;
+  color: var(--ink-2);
+  padding-left: var(--s3);
+  border-left: 1px solid var(--rule);
+  margin-bottom: var(--s5);
+  transition: border-color 120ms var(--ease), color 120ms var(--ease);
+}
+.note:last-child { margin-bottom: 0; }
+.note.lit { border-left-color: var(--flag); color: var(--ink); }
+.note b { display: block; font-weight: 500; color: var(--ink); }
+.note a { color: inherit; text-decoration-color: var(--rule); }
+.note a:hover { color: var(--seal); }
+
+/* quoted material carries the highlighter, and only quoted material */
+.quo {
+  background: linear-gradient(var(--wash), var(--wash)) 0 88% / 100% 0.62em no-repeat;
+  padding: 0 0.06em;
+}
+
+/* ----------------------------------------------------------------- sheet */
+
+.sheet {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  padding: var(--s7);
+}
+
+.sheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3) var(--s5);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--s4);
+  margin-bottom: var(--s6);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: var(--ink-2);
+}
+
+/* ---------------------------------------------------------------- button */
+
+.btn {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  padding: 0.72em 1.35em;
+  border-radius: 2px;
+  border: 1px solid var(--seal);
+  background: var(--seal);
+  color: #f4f7f4;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 140ms var(--ease), border-color 140ms var(--ease);
+}
+.btn:hover { background: var(--seal-lift); border-color: var(--seal-lift); color: #f4f7f4; }
+
+.btn-quiet {
+  background: none;
+  color: var(--seal);
+  border-color: var(--rule);
+}
+.btn-quiet:hover { background: var(--seal-wash); border-color: var(--seal); color: var(--seal); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; }
+
+/* ------------------------------------------------------------------- nav */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--desk);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.masthead-in {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--s4) var(--s5);
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+}
+
+/* Biclay's own mark and name, enclosed in the citation brackets the site uses
+   for every source reference.
+
+   Two things had to be right and were not at first. The brackets are drawn, not
+   set as font glyphs: a glyph bracket at any usable size towers over a 15px
+   cap-height and hangs below the baseline, which is what made earlier versions
+   look fussy. And the mark's stroke is thickened well past the original — a
+   hairline circle standing next to bold text reads as flimsy no matter what
+   size it is. Brackets and mark now share one line weight, so they read as a
+   single drawing with the name inside. */
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.32rem;
+  line-height: 1;
+  letter-spacing: -0.018em;
+  flex-shrink: 0;
+}
+.wordmark .in {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 6px;
+}
+.wordmark svg { display: block; flex-shrink: 0; overflow: visible; }
+.wordmark .mk { color: var(--ink); }
+.wordmark .br { opacity: 0.5; transition: opacity 140ms var(--ease); }
+.wordmark:hover { color: var(--ink); }
+.wordmark:hover .br { opacity: 1; }
+
+.nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+}
+.nav a {
+  text-decoration: none;
+  color: var(--ink-2);
+  font-size: var(--t-small);
+  transition: color 120ms var(--ease);
+}
+.nav a:not(.btn):hover, .nav a[aria-current="page"]:not(.btn) { color: var(--ink); }
+.nav a[aria-current="page"]:not(.btn) { box-shadow: 0 1px 0 var(--seal); }
+/* One nav item is a product, the rest are sections. Marked with a dot, not a
+   wash: the highlighter belongs under quoted material and nowhere else, and at
+   nav size a block of it reads as a marker-pen swipe rather than a decision. */
+.nav a.product {
+  color: var(--ink);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.nav a.product::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--wash-ink);
+  flex: none;
+}
+/* the dot already marks it; the current-page rule would underline the dot too */
+.nav a.product[aria-current="page"] { box-shadow: none; text-decoration: underline;
+  text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.nav a.btn { color: #f4f7f4; font-size: var(--t-small); padding: 0.52em 1.05em; }
+.nav a.btn:hover { color: #f4f7f4; }
+
+.nav-toggle { display: none; }
+
+/* ------------------------------------------------------------- structure */
+
+section { padding-block: var(--s9); }
+section.tight { padding-block: var(--s8); }
+section.airy { padding-block: var(--s10); }
+section + section { padding-top: 0; }
+/* a section that belongs to the hero above it: the illustration that the
+   headline is about should sit inside the first screen, not a screen below */
+section.attach { padding-top: 0; }
+
+.rule-top { border-top: 1px solid var(--rule); padding-top: var(--s8); }
+
+.deck {
+  font-size: var(--t-lead);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 58ch;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--t-stamp);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 var(--s4);
+}
+
+.lede { font-size: var(--t-lead); line-height: 1.55; }
+
+/* heading-to-body rhythm, so pages don't carry inline spacing */
+.main > h2 + p, .main > h2 + .deck, .main > h1 + .deck,
+.qa > h2 + p, .qa > h3 + p { margin-top: var(--s5); }
+.main > .facts, .main > .cols, .main > .btn-row, .main > h2 + .qa { margin-top: var(--s7); }
+.main > .entries { margin-top: var(--s6); }
+.main > p + .btn-row { margin-top: var(--s7); }
+.follow { margin-top: var(--s7); }
+
+/* ------------------------------------------------------------------ hero */
+
+.hero { padding-block: calc(var(--s7) + var(--s2)) var(--s7); }
+.hero h1 { margin-bottom: var(--s5); }
+/* a long headline set at display size wraps to five short lines; take it down
+   a step and let it fill its measure */
+.hero h1.long { font-size: var(--t-display-long); text-wrap: pretty; }
+.hero .deck { margin-bottom: var(--s6); max-width: 56ch; }
+
+.hero-mark {
+  font-family: var(--mono);
+  font-size: var(--t-stamp);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--seal);
+  margin-bottom: var(--s5);
+}
+
+/* --------------------------------------------------------------- compare */
+
+/* The one picture of the product on the site. Framed a shade harder than a
+   sheet, with a tinted title bar, so it reads as an object rather than a box
+   of body text. */
+.compare { margin: 0; border: 1px solid var(--rule-strong); background: var(--sheet); }
+
+.compare-bar {
+  display: block;
+  max-width: none;
+  margin: 0;
+  padding: var(--s4) var(--s5);
+  background: var(--seal-wash);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: var(--ink-2);
+}
+
+.compare-q {
+  max-width: none;
+  margin: 0;
+  padding: var(--s5);
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.09rem;
+  line-height: 1.45;
+}
+.compare-q b {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--t-stamp);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 400;
+  margin-bottom: var(--s2);
+}
+
+/* Two answers to one question, shown at once. An earlier version put them
+   behind a toggle, which hid the comparison that is the whole point.
+
+   CiteOnly sits on the right. Left-to-right readers look left first, but the
+   before/after convention puts the improved state on the right, right-handers
+   (nine in ten people) associate the right side with "good" and pick the
+   product shown there (Casasanto 2009; Chae and Hoegg 2013), and the reader
+   ends on the sourced answer rather than the warning. The product panel is
+   marked the same way everywhere it appears: warm ground, ink frame, black
+   chip. A skimmer learns the identity once. */
+.compare-pair { display: grid; grid-template-columns: 1fr 1fr; }
+.compare-pair > div { padding: var(--s5); }
+.compare-pair > div + div { border-left: 1px solid var(--rule); }
+.compare-pair > .ours, .record-body {
+  background: var(--sheet-warm);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+/* The two sides must be told apart at a glance, not by reading the label. */
+.side-h {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--t-stamp);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  background: var(--ink);
+  margin: 0 0 var(--s5);
+  padding: 6px 10px;
+  border-radius: 2px;
+}
+.side-h.other {
+  color: var(--ink-3);
+  background: none;
+  border: 1px solid var(--rule);
+  font-weight: 400;
+  padding: 5px 9px;
+}
+
+.finding { margin-bottom: var(--s5); }
+.finding:last-of-type { margin-bottom: 0; }
+.finding p { margin-bottom: var(--s2); font-size: 1.03rem; line-height: 1.5; }
+.finding .note { margin-bottom: 0; max-width: none; }
+
+/* One answer on its own: the product page's picture of what comes back. */
+.record-body { padding: var(--s5); }
+.record-body .finding p { max-width: 62ch; }
+
+/* The unsourced answer carries no marks at all. That is the point: nothing in
+   it tells you which parts are real. */
+.answer { font-size: 1.03rem; line-height: 1.55; color: var(--ink); }
+
+.verdict {
+  display: flex;
+  gap: var(--s3);
+  align-items: flex-start;
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.verdict.bad { color: var(--flag); }
+.verdict b { font-weight: 500; }
+.tick { flex-shrink: 0; margin-top: 0.15em; }
+
+@media (max-width: 720px) {
+  .compare-pair { grid-template-columns: 1fr; }
+  .compare-pair > div + div { border-left: 0; }
+}
+
+/* --------------------------------------------------------------- columns */
+
+.cols {
+  display: grid;
+  gap: var(--s7) var(--track-gap);
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.cols h3 { margin-bottom: var(--s3); }
+.cols p { font-size: var(--t-small); color: var(--ink-2); }
+
+/* a stacked sequence: the ordinal hangs to the left of the main column and
+   the claim sits in it, so the numbering is structure rather than decoration */
+.item { padding-block: var(--s6); }
+.item + .item { border-top: 1px solid var(--rule-soft); }
+.item > .main { grid-row: 1; }
+.item .ord {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
+  width: 3.5rem;
+  margin: 0 0 0 calc(-3.5rem - var(--track-gap));
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  text-align: right;
+  padding-top: 0.15em;
+}
+.item h3 { margin-bottom: var(--s3); }
+.item p { color: var(--ink-2); max-width: 60ch; }
+
+/* ----------------------------------------------------------------- lists */
+
+.plain { list-style: none; margin: 0; padding: 0; }
+
+.entries { border-top: 1px solid var(--rule); }
+.entries > li { border-bottom: 1px solid var(--rule); padding: var(--s5) 0; }
+/* entries follow the page's h1 directly, so their titles are h2 set at h3 size */
+.entries h2, .entries h3 { font-size: var(--t-h3); line-height: 1.25; margin-bottom: var(--s2); }
+.entries h2 a, .entries h3 a { text-decoration: none; color: var(--ink); }
+.entries h2 a:hover, .entries h3 a:hover { color: var(--seal); }
+.entries p { font-size: var(--t-small); color: var(--ink-2); margin-bottom: var(--s2); }
+.entries .meta { font-family: var(--mono); font-size: var(--t-mono); color: var(--ink-3); }
+
+.facts { margin: 0; padding: 0; list-style: none; }
+.facts > li {
+  padding: var(--s5) 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: var(--s5);
+  align-items: baseline;
+}
+.facts > li:first-child { border-top: 1px solid var(--rule-soft); }
+.facts dt, .facts .k {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.facts .v { font-size: var(--t-small); }
+.facts .v p { margin-bottom: 0; }
+
+/* Definition list: a term and what it means. Not a statistics table. */
+.deflist { margin: 0; padding: 0; list-style: none; }
+.deflist > li { padding: var(--s5) 0; border-bottom: 1px solid var(--rule-soft); }
+.deflist > li:first-child { border-top: 1px solid var(--rule-soft); }
+.deflist dt, .deflist .term {
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: var(--s2);
+}
+.deflist p { font-size: var(--t-small); color: var(--ink-2); margin: 0; }
+
+/* Related reading: navigation, so it looks like navigation. */
+.related { display: grid; gap: var(--s5); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: var(--s6); }
+.related a {
+  display: block;
+  text-decoration: none;
+  border-top: 2px solid var(--seal);
+  padding-top: var(--s3);
+  color: var(--ink);
+}
+.related a:hover { border-top-color: var(--flag); }
+.related a:hover .r-title { color: var(--seal); }
+.r-kind {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--t-stamp);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: var(--s2);
+}
+.r-title { display: block; font-weight: 600; line-height: 1.3; margin-bottom: var(--s2); }
+.r-note { display: block; font-size: var(--t-small); color: var(--ink-2); line-height: 1.5; }
+.deep .related a { color: var(--deep-ink); border-top-color: var(--wash); }
+.deep .related a:hover { border-top-color: #fff; }
+.deep .r-kind { color: #7c8085; }
+.deep .r-note { color: var(--deep-ink-2); }
+.deep .related a:hover .r-title { color: #fff; }
+
+/* ------------------------------------------------------------- diagrams */
+
+.figure { margin: var(--s6) 0 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+
+/* The wide drawing is 920 units across and only reads at close to full
+   size, which it gets above 1100px where the row is 926px wide. Below that
+   the column is 660px or less and the labels drop under 8px, so the compact
+   two-column drawing is shown instead: 480px wide at most, full width on a
+   phone. The wide drawing keeps its scroll track and keyboard focus in case
+   it ever overflows. */
+.figure-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.figure-scroll svg { min-width: 640px; }
+.figure-tall { display: none; max-width: 480px; }
+@media (max-width: 1099px) {
+  .figure-scroll { display: none; }
+  .figure-tall { display: block; }
+}
+.figure figcaption {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: var(--ink-2);
+  margin-top: var(--s4);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  max-width: 62ch;
+}
+.d-line { stroke: var(--ink); fill: none; }
+.d-rule { stroke: var(--rule); fill: none; }
+.d-box { fill: var(--sheet); stroke: var(--ink); }
+.d-box-soft { fill: none; stroke: var(--rule); }
+.d-wash { fill: var(--wash); }
+.d-flag { fill: var(--flag-wash); stroke: var(--flag); }
+.d-panel { fill: var(--sheet-warm); stroke: var(--ink); stroke-width: 1.2; }
+.d-panel-other { fill: var(--sheet); stroke: var(--rule-strong); stroke-width: 1; }
+.d-head { fill: var(--ink); }
+.d-lead { stroke: var(--ink-3); fill: none; }
+.d-lead-flag { stroke: var(--flag); fill: none; }
+/* the slots CiteOnly does not have, and the answer the checker let through */
+.d-ghost { fill: none; stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 4 3; }
+.d-ghost-text { font-family: var(--mono); font-size: 11px; fill: var(--ink-3); letter-spacing: 0.02em; }
+.d-box-tainted { fill: var(--sheet); stroke: var(--flag); stroke-dasharray: 4 3; }
+.d-chip { fill: var(--ink); }
+.d-chip-other { fill: none; stroke: var(--rule); }
+.d-chip-text { font-family: var(--mono); font-size: 10px; font-weight: 500; fill: #fff; letter-spacing: 0.12em; }
+.d-chip-text-other { font-family: var(--mono); font-size: 10px; fill: var(--ink-3); letter-spacing: 0.12em; }
+.d-label { font-family: var(--mono); font-size: 11px; fill: var(--ink); letter-spacing: 0.02em; }
+.d-label-2 { font-family: var(--mono); font-size: 11px; fill: var(--ink-2); }
+.d-label-flag { font-family: var(--mono); font-size: 11px; fill: var(--flag); }
+.d-serif { font-family: var(--serif); font-size: 15px; fill: var(--ink); font-weight: 600; }
+
+/* ------------------------------------------------------------------ prose */
+
+.prose h2 { margin: var(--s8) 0 var(--s4); }
+.prose h3 { margin: var(--s7) 0 var(--s3); }
+.prose > :first-child { margin-top: 0; }
+.prose ul, .prose ol { margin: 0 0 var(--s5); padding-left: 1.35em; max-width: 66ch; }
+.prose li { margin-bottom: var(--s3); }
+.prose blockquote {
+  margin: var(--s6) 0;
+  padding-left: var(--s5);
+  border-left: 2px solid var(--seal);
+  font-size: var(--t-lead);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* sector list: two columns whose row borders line up because grid stretches */
+.sectors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 0 var(--track-gap);
+  border-top: 1px solid var(--rule);
+}
+.sectors > li { padding: var(--s6) 0; border-bottom: 1px solid var(--rule); }
+.sectors h3 { margin-bottom: var(--s3); }
+.sectors h3 a { text-decoration: none; }
+.sectors h3 a::after { content: " \2192"; color: var(--ink-3); font-size: 0.8em; }
+.sectors p { font-size: var(--t-small); color: var(--ink-2); }
+
+.tag {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: var(--ink-3);
+  margin-top: var(--s3);
+  line-height: 1.55;
+}
+
+.portrait { margin: var(--s6) 0 0; }
+.portrait img { border: 1px solid var(--rule); display: block; }
+
+.qa { margin-bottom: var(--s7); }
+.qa:last-child { margin-bottom: 0; }
+.qa h3 { margin-bottom: var(--s3); }
+
+/* the free-generation sample reads at answer size, not body size */
+.answer { font-size: 1.09rem; line-height: 1.55; }
+.fallback { border: 0; border-top: 1px dashed var(--rule); padding: var(--s5) 0 0; margin: var(--s5) 0 0; }
+
+/* ------------------------------------------------------------------ deep */
+
+/* Two grounds for content: desk (default) and paper (white). Inverted blocks
+   were tried and cut — readers associate a dark band with the footer and skip
+   whatever is in it, so the only dark area on a page is the footer itself. */
+.paper {
+  background: var(--sheet);
+  border-block: 1px solid var(--rule);
+}
+
+/* A closing call to action. Reads as an ending without borrowing the footer's
+   color, which is what made the old inverted version invisible. */
+.cta {
+  border-top: 2px solid var(--ink);
+  background: var(--desk);
+}
+.cta h2 { font-size: var(--t-h2); }
+
+.deep {
+  background: var(--deep);
+  color: var(--deep-ink);
+}
+.deep h2, .deep h3 { color: #fbfbfa; }
+.deep .deck, .deep p { color: var(--deep-ink-2); }
+.deep .eyebrow { color: #7c8085; }
+.deep a { color: var(--deep-ink); text-decoration-color: var(--wash); }
+.deep a:hover { color: #fff; text-decoration-color: var(--wash); }
+.deep .btn { background: #fbfbfa; border-color: #fbfbfa; color: var(--deep); }
+.deep .btn:hover { background: #fff; border-color: #fff; color: var(--deep); }
+.deep .btn-quiet { background: none; color: var(--deep-ink); border-color: #3d4045; }
+.deep .btn-quiet:hover { background: #22252a; border-color: #8a8f93; color: #fff; }
+.deep .note { color: var(--deep-ink-2); border-left-color: #383b40; }
+.deep .note b { color: var(--deep-ink); }
+.deep .note a { color: var(--deep-ink-2); text-decoration-color: #4a4d52; }
+.deep .note a:hover { color: #fff; }
+.deep .note.lit { color: #fff; border-left-color: var(--wash); }
+.deep .note.lit b { color: #fff; }
+.deep .src { color: var(--wash); }
+.deep .src:hover, .deep .src.lit { color: #fff; }
+.deep .facts > li { border-color: #2c2f34; }
+.deep .facts > li:first-child { border-top-color: #2c2f34; }
+.deep .facts .k { color: var(--wash); }
+.deep .facts .v { color: var(--deep-ink-2); }
+
+/* ---------------------------------------------------------------- footer */
+
+.foot {
+  background: var(--deep);
+  color: var(--deep-ink-2);
+  padding-block: var(--s8) var(--s7);
+  font-size: var(--t-small);
+}
+.foot-in {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: var(--s5);
+  display: grid;
+  gap: var(--s7) var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.foot ul { list-style: none; margin: 0; padding: 0; }
+.foot li { margin-bottom: var(--s2); }
+.foot a { color: var(--deep-ink); text-decoration: none; }
+.foot a:hover { color: #fff; text-decoration: underline; text-decoration-color: var(--wash); }
+.foot .wordmark { color: var(--deep-ink); }
+.foot p { color: #7c8085; font-size: var(--t-mono); font-family: var(--mono); line-height: 1.6; }
+/* column labels, not headings: four h2s per page flattened every outline */
+.foot .foot-h {
+  font-size: var(--t-stamp);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin-bottom: var(--s4);
+}
+.foot-base {
+  max-width: 1120px;
+  margin: var(--s7) auto 0;
+  padding: var(--s5) var(--s5) 0;
+  border-top: 1px solid #2c2f34;
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: #7c8085;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3) var(--s5);
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------- reveals */
+
+.rise { opacity: 0; transform: translateY(8px); }
+.rise.seen { opacity: 1; transform: none; transition: opacity 300ms var(--ease), transform 300ms var(--ease); }
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 1099px) {
+  .row { grid-template-columns: minmax(0, var(--track-main)); }
+  .row > .margin {
+    grid-column: 1;
+    padding-top: var(--s5);
+    margin-top: var(--s5);
+    border-top: 1px solid var(--rule);
+  }
+  .row.wide { grid-template-columns: minmax(0, var(--track-main)); }
+}
+
+@media (max-width: 860px) {
+  :root { --track-gap: 24px; }
+  .facts > li { grid-template-columns: 6rem 1fr; gap: var(--s4); }
+  /* no room to hang the ordinal: it sits above its heading, left-aligned */
+  .item .ord {
+    grid-row: 1;
+    width: auto;
+    margin: 0 0 var(--s2);
+    text-align: left;
+    padding-top: 0;
+  }
+  .item > .main { grid-row: 2; }
+}
+
+@media (max-width: 760px) {
+  :root { --s9: 76px; --s10: 96px; --s8: 56px; }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .row > .main, .row > .margin { grid-column: 1; }
+  .row.wide { grid-template-columns: minmax(0, 1fr); }
+  .sheet { padding: var(--s5); }
+  .facts > li { grid-template-columns: minmax(0, 1fr); gap: var(--s2); }
+
+  .masthead { position: static; }
+  .masthead-in { flex-wrap: wrap; gap: var(--s3); }
+  .nav-toggle {
+    display: block;
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: var(--t-mono);
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.5em 0.85em;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  /* Stacked links by default so a phone without JavaScript still has a nav.
+     site.js adds .js-nav, which is what turns it into a collapsible menu. */
+  .nav {
+    display: flex;
+    flex-basis: 100%;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s4);
+    padding: var(--s4) 0 var(--s2);
+    border-top: 1px solid var(--rule);
+  }
+  .masthead.js-nav .nav { display: none; }
+  .masthead.js-nav .nav.open { display: flex; }
+  /* stacked, the dot would indent the product past the other labels — hang it
+     in the margin instead so all four line up on the left edge */
+  .nav a.product { position: relative; gap: 0; }
+  .nav a.product::before { position: absolute; left: -0.85em; top: 50%;
+    margin-top: -2.5px; }
+}
+
+@media (max-width: 420px) {
+  .compare-bar { gap: var(--s3); }
+  .switch { margin-left: 0; flex-basis: 100%; }
+  .switch button { flex: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rise { opacity: 1; transform: none; }
+}
+
+@media print {
+  .masthead, .foot, .switch, .btn { display: none; }
+  body { background: #fff; }
+  .row { display: block; }
+  .note { break-inside: avoid; }
+  /* in block flow the hanging ordinal would sit 92px off the printed page */
+  .item .ord { width: auto; margin: 0 0 var(--s2); text-align: left; }
+
+  /* the highlighter is a background, which printers drop; it is the one
+     visual device that says the words came from the file, so force it and
+     add a rule underneath for browsers that drop it anyway */
+  .quo {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    text-decoration: underline;
+    text-decoration-color: #000;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+  }
+
+  /* backgrounds are dropped when printing, so the inverted sections would
+     otherwise print pale grey on white */
+  .deep { background: #fff; color: #000; }
+  .deep h2, .deep h3, .deep p, .deep .deck,
+  .deep .facts .k, .deep .facts .v, .deep .note, .deep .note b, .deep a { color: #000; }
+  .deep .facts > li, .deep .note { border-color: #999; }
+}

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CiteOnly: answers made of your own documents — Biclay</title>
+<meta name="description" content="CiteOnly answers questions about your documents in their own words, reports where each part came from, and says so when the answer is not there.">
+<link rel="canonical" href="https://citeonly.com/product/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Biclay">
+<meta property="og:title" content="CiteOnly: answers made of your own documents">
+<meta property="og:description" content="CiteOnly answers questions about your documents in their own words, reports where each part came from, and says so when the answer is not there.">
+<meta property="og:url" content="https://citeonly.com/product/">
+<meta property="og:image" content="https://citeonly.com/assets/img/og-citeonly.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CiteOnly: answers made of your own documents">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/literata-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script defer src="/assets/js/site.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://citeonly.com/#org",
+      "name": "Biclay",
+      "url": "https://citeonly.com/",
+      "logo": "https://citeonly.com/assets/img/apple-touch-icon.png",
+      "description": "Biclay builds AI systems for work where being wrong has consequences.",
+      "founder": {
+        "@type": "Person",
+        "name": "Sushant Daga"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Where does our data go?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CiteOnly can be self-hosted. Ask us directly and we will answer specifically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from retrieval with citations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Retrieval hands passages to a model that writes freely; the citation records what was nearby, not what supports the sentence. CiteOnly has no free-writing stage. The comparison is set out on the home page, and why a checking layer does not close the gap is a longer argument."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it work across many documents at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and that is where it is most useful. The awkward questions are the ones where a master document says one thing, an amendment changes it and an annex qualifies it. Each part of an answer carries its own source, so a conflict shows up as a conflict rather than being smoothed into one fluent sentence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does a pilot involve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A set of your documents, the questions your team actually gets asked, and a way to tell us when an answer was not the one you wanted. That last part is the valuable one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which languages and formats?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tell us what you have."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://citeonly.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "CiteOnly",
+          "item": "https://citeonly.com/product/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="wordmark" href="/"><svg class="br" width="7" height="25" viewBox="0 0 7 25" aria-hidden="true"><path d="M6 1 H1 V24 H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg><span class="in"><svg class="mk" width="20" height="20" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="92"/><path d="M 26 78 Q 100 64, 174 78"/><path d="M 26 132 Q 100 146, 174 132"/><path d="M 100 22 Q 80 100, 56 178"/><path d="M 100 22 Q 120 100, 144 178"/></g></svg>Biclay</span><svg class="br" width="7" height="25" viewBox="0 0 7 25" aria-hidden="true"><path d="M1 1 H6 V24 H1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" hidden>Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/product/" class="product" aria-current="page">CiteOnly</a>
+      <a href="/industries/">Industries</a>
+      <a href="/research/">Research</a>
+      <a href="/about/">About</a>
+      <a class="btn" href="/contact/">Request a pilot</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="row">
+    <div class="main">
+      <p class="hero-mark">CiteOnly</p>
+      <h1>Answers made of your own documents.</h1>
+      <p class="deck">CiteOnly takes a set of documents you supply and answers questions
+      about them. The answers are built from material that is already in those documents,
+      and each part arrives with the place it came from.</p>
+      <div class="btn-row">
+        <a class="btn" href="/contact/">Request a pilot</a>
+        <a class="btn btn-quiet" href="/industries/">Where it applies</a>
+      </div>
+    </div>
+    <aside class="margin">
+      <div class="note">
+        <b>CiteOnly</b>
+        A product of Biclay, currently in development and running with a small
+        number of pilot partners.
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="tight attach">
+  <div class="row wide">
+    <div class="main">
+      <figure class="compare record">
+        <figcaption class="compare-bar">Illustration · one question, two passages, one gap</figcaption>
+        <p class="compare-q"><b>Question</b>Can unused annual leave be carried into next
+        year, and is it paid out when someone leaves?</p>
+        <div class="record-body">
+          <p class="side-h">CiteOnly</p>
+          <div class="finding">
+            <p><span class="quo">“Up to five (5) days of unused annual leave may be
+            carried into the following leave year”</span><a class="src" href="#x1" aria-label="Source 1">1</a></p>
+            <div class="note" id="x1">
+              <b>Leave Policy, version 3.2</b>
+              Section 4.1, page 6
+            </div>
+          </div>
+          <div class="finding">
+            <p><span class="quo">“Carried-over days must be taken by 31
+            March”</span><a class="src" href="#x2" aria-label="Source 2">2</a></p>
+            <div class="note" id="x2">
+              <b>HR Bulletin 2026-01</b>
+              Paragraph 2, page 1
+            </div>
+          </div>
+          <p class="verdict">
+            <svg class="tick" width="13" height="13" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M4.8 8h6.4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+            <span><b>Not in the documents supplied:</b> whether carried-over leave is
+            paid out on leaving. No passage answers it, so none is offered.</span>
+          </p>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="row">
+    <div class="main">
+      <h2>What it does</h2>
+      <p>You give CiteOnly a body of documents: a contract and its amendments, a policy
+      manual, a deal room, a set of guidelines, a case file. You ask a question in ordinary
+      language. What comes back is the material in those documents that answers it,
+      together with the document, the location and the surrounding passage for each piece.</p>
+      <p>Three things follow from that, and they are the reason to use it rather than a
+      general assistant.</p>
+    </div>
+    <aside class="margin">
+      <div class="note">
+        <b>Scope of a pilot</b>
+        Agreed with you, per engagement.
+      </div>
+    </aside>
+  </div>
+
+  <div class="row item">
+    <p class="ord">I</p>
+    <div class="main">
+      <h3>Every sentence you read is a sentence from your documents</h3>
+      <p>The answer is assembled from what your documents contain, so what you read and
+      what the file says are the same words. Verifying an answer means opening the passage
+      named beside it, and nothing more.</p>
+    </div>
+  </div>
+  <div class="row item">
+    <p class="ord">II</p>
+    <div class="main">
+      <h3>The audit trail is always present, by design</h3>
+      <p>Most systems assemble their audit trail afterwards, by logging what was
+      retrieved and matching it back to what was written. That reconstruction is
+      approximate, and it is where trails develop gaps.</p>
+      <p>Here the trail is produced with the answer. An answer is built out of located
+      material, so the record of where every part came from exists before anyone asks for
+      it, complete by design: nothing to configure, nothing to maintain, and no gap between
+      what the system did and what the log says it did.</p>
+    </div>
+  </div>
+  <div class="row item">
+    <p class="ord">III</p>
+    <div class="main">
+      <h3>When the answer is not there, it says so</h3>
+      <p>If the documents do not contain an answer, CiteOnly reports that. This is the
+      part most teams underestimate. A general assistant asked about a clause that is not
+      in a contract will usually produce a reasonable-sounding clause, because producing
+      something is what it does. Getting a clear negative is often more valuable than
+      getting an answer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="row wide">
+    <div class="main">
+      <h2>Where it fits</h2>
+      <p class="deck">What it is built for, and where it stops.</p>
+      <ul class="facts">
+        <li>
+          <span class="k">Answers, not drafts</span>
+          <span class="v"><p>CiteOnly answers questions about documents you already have.
+          Drafting a memo, summarizing into fresh prose or rewriting in a house style
+          means producing words that are not in the source, which is exactly what it is
+          built not to do. For those jobs you need a different tool, and probably a
+          person.</p></span>
+        </li>
+        <li>
+          <span class="k">Faithful always</span>
+          <span class="v"><p>CiteOnly can fall short on capability, never on faithfulness.
+          It may hand you a passage that is genuinely in your documents but not the one you
+          wanted. Because every part of an answer arrives with its source, finding that out
+          is a matter of checking a location rather than investigating a claim. A wrong
+          answer is cheaper to catch here than in a system that writes freely.</p></span>
+        </li>
+        <li>
+          <span class="k">Beyond search</span>
+          <span class="v"><p>Keyword search returns documents and leaves the reading to
+          you. CiteOnly answers the question and shows you the passage that answers it.
+          The distinction matters most when the answer is spread across documents that
+          amend one another.</p></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="row">
+    <div class="main">
+      <h2>Questions we get asked</h2>
+      <div class="qa">
+        <h3>Where does our data go?</h3>
+        <p>CiteOnly can be self-hosted. Ask us directly and we will answer
+        specifically.</p>
+      </div>
+      <div class="qa">
+        <h3>How is this different from retrieval with citations?</h3>
+        <p>Retrieval hands passages to a model that writes freely; the citation records
+        what was nearby, not what supports the sentence. CiteOnly has no free-writing
+        stage. <a href="/">The comparison is set out on the home page</a>, and
+        <a href="/research/checking-the-answer-afterwards/">why a checking layer does not
+        close the gap</a> is a longer argument.</p>
+      </div>
+      <div class="qa">
+        <h3>Can it work across many documents at once?</h3>
+        <p>Yes, and that is where it is most useful. The awkward questions are the ones
+        where a master document says one thing, an amendment changes it and an annex
+        qualifies it. Each part of an answer carries its own source, so a conflict shows
+        up as a conflict rather than being smoothed into one fluent sentence.</p>
+      </div>
+      <div class="qa">
+        <h3>What does a pilot involve?</h3>
+        <p>A set of your documents, the questions your team actually gets asked, and a
+        way to tell us when an answer was not the one you wanted. That last part is the
+        valuable one.</p>
+      </div>
+      <div class="qa">
+        <h3>Which languages and formats?</h3>
+        <p>Tell us what you have.</p>
+      </div>
+    </div>
+    <aside class="margin">
+      <div class="note">
+        <b>Something missing?</b>
+        <a href="/contact/">Ask it</a> and the answer will end up on this page.
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="row">
+    <div class="main">
+      <h2>Start with documents you already argue about</h2>
+      <p class="deck">The best pilot subject is the file your team keeps re-reading because
+      the answer matters and nobody wants to be the one who got it wrong.</p>
+      <div class="btn-row">
+        <a class="btn" href="/contact/">Request a pilot</a>
+        <a class="btn btn-quiet" href="/industries/">See the sectors</a>
+      </div>
+    </div>
+    <aside class="margin">
+      <div class="note">
+        <b>What we look for</b>
+        Organizations willing to be specific about where the output falls short. That
+        feedback is the point of the stage we are at.
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <p class="foot-h">Biclay</p>
+      <p>AI systems for work where being wrong has consequences.</p>
+    </div>
+    <div>
+      <p class="foot-h">Product</p>
+      <ul>
+        <li><a href="/product/">What CiteOnly does</a></li>
+        <li><a href="/industries/">Where it applies</a></li>
+        <li><a href="/contact/">Request a pilot</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="foot-h">Reading</p>
+      <ul>
+        <li><a href="/research/">Research and writing</a></li>
+        <li><a href="/research/what-a-fabricated-citation-costs/">What a fabricated citation costs</a></li>
+        <li><a href="/research/what-regulators-will-ask-you-to-prove/">What regulators will ask you to prove</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="foot-h">Company</p>
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="mailto:hello@biclay.com">hello@biclay.com</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-base">
+    <span>&copy; 2026 Biclay</span>
+  </div>
+</footer>
+
+</body>
+</html>
