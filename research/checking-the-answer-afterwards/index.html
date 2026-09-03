@@ -117,13 +117,13 @@
       <p class="hero-mark"><a href="/research/">Research</a></p>
       <h1>The trouble with checking the answer afterwards</h1>
       <p class="deck">The standard way to make AI output trustworthy is to let a model
-      write, then check what it wrote. The arrangement helps. It also has a floor, and the
-      floor is not a tuning problem.</p>
+      write, then check what it wrote. The arrangement helps. It also leaves fabrications in place that no amount of
+      tuning removes.</p>
     </div>
     <aside class="margin">
       <div class="note">
         <b>About this piece</b>
-        It is about an industry pattern, not about how our own system is built.
+        It describes an industry pattern. Nothing in it describes how CiteOnly is built.
       </div>
       <div class="note">
         <b>CiteOnly</b>
@@ -146,11 +146,11 @@
       attempt.<a class="src" href="#p1" aria-label="Source 1">1</a></p>
       <p>Variants abound. Some teams swap the second model for a similarity matcher. Some
       route through a knowledge graph so the facts have structure. Some run several models
-      and take the consensus. The shape is constant: free generation, then inspection.</p>
-      <p>It is a sensible engineering response and it genuinely reduces fabrication.
+      and take the consensus. All of them generate freely first and inspect afterwards.</p>
+      <p>It is a sensible engineering response and it reduces fabrication.
       Nothing below argues that it does not.</p>
 
-      <h2>Four reasons it has a floor</h2>
+      <h2>Four reasons some fabrications always get through</h2>
 
       <h3>The checker is the same kind of thing it is checking</h3>
       <p>A verification model is a language model making a judgment about whether a
@@ -161,10 +161,9 @@
       too. Two correlated judgments do not multiply into a strong guarantee.</p>
 
       <h3>The failures that get through are the dangerous ones</h3>
-      <p>A checker catches the obvious cases. What survives is the confident, well-formed,
-      topically perfect fabrication — precisely the output a human reviewer will also wave
-      through. Filtering does not simply reduce the error rate; it changes the composition
-      of what remains, concentrating it in the failures hardest to spot downstream.</p>
+      <p>A checker catches the obvious cases. What survives is the confident, well-formed, topically perfect fabrication, the
+      kind a human reviewer will also wave through. Filtering lowers the error rate, and the errors that remain are the ones hardest
+      to spot downstream.</p>
 
       <h3>Support is not a binary property</h3>
       <p>“Does this passage support this claim?” is often a genuine judgment call. A
@@ -174,7 +173,7 @@
       binary supported-or-not verdict flattens them, and the flattening is where the
       liability sits.</p>
 
-      <h3>The guarantee degrades exactly where you need it</h3>
+      <h3>The guarantee is weakest when conditions are unusual</h3>
       <p>Checking performance is measured on evaluation sets. Real use drifts away from
       them: an unusual question, an unusually long document, a domain nobody anticipated,
       a badly scanned annex. The generator's error rate rises in these conditions and so
@@ -203,7 +202,7 @@
     <aside class="margin">
       <div class="note" id="p1">
         <b>The current standard</b>
-        Retrieval plus span-level verification is described as the robust approach in 2026
+        Retrieval plus span-level verification is the approach recommended in 2026
         enterprise guidance on grounding and hallucination management. Knowledge-graph
         grounding is the other common variant.
       </div>
