@@ -96,10 +96,10 @@
   <div class="row wide">
     <div class="main">
       <h1>An AI that cannot make things up.</h1>
-      <p class="deck">Ask about your own documents and the answer comes back in
-      those documents’ own words, with the document, the clause and the page it
-      came from. No model writes the answer, so there is no fabrication to catch
-      afterwards.</p>
+      <p class="deck">Ask about your own documents and the answer comes back in those documents’ own
+      words, with the document, the clause and the page it came from. The answer
+      is generated as citations. Nothing in it is written freely, so there is no
+      fabrication to catch afterwards.</p>
       <div class="btn-row">
         <a class="btn" href="/contact/">Request a pilot</a>
         <a class="btn btn-quiet" href="/product/">What it does</a>
@@ -203,8 +203,8 @@
   <div class="row">
     <div class="main">
       <h2>Is this retrieval with citations?</h2>
-      <p class="lede">No. Retrieval lets a model write the answer. CiteOnly does not
-      let anything write the answer.</p>
+      <p class="lede">No. Retrieval lets a model write the answer freely. CiteOnly generates the answer
+      as citations, each a passage from your documents and the place it came from.</p>
       <p>A retrieval system finds relevant documents and hands them to a language
       model, which writes the answer in its own words. <strong>The writing is where
       things get invented.</strong> A citation added afterwards records which document
@@ -212,10 +212,10 @@
       <p>The usual remedy is a second model that grades each claim. <strong>That model is
       itself a language model making a judgment.</strong>
       The fabrications it lets through are the ones that look most like the truth.</p>
-      <p><strong>CiteOnly works the other way round.</strong> It locates the passages
-      that answer your question and hands those back, each with its document and position.
-      Nothing composes a new sentence at any point, so there is no stage to check and no
-      answer without a source.</p>
+      <p><strong>CiteOnly works the other way round.</strong> It generates the citations
+      that answer your question, each with its document and position, and writes
+      nothing freely at any point, so there is no stage to check and no answer
+      without a source.</p>
     </div>
     <aside class="margin">
       <div class="note">
@@ -305,9 +305,9 @@
     <g class="d-lead" stroke-width="1.2">
       <path d="M720 234 H728"/><path d="M720 318 H728"/><path d="M720 402 H728"/>
     </g>
-    <text class="d-label-2" x="732" y="238">no writing stage</text>
+    <text class="d-label-2" x="732" y="238">no free-writing stage</text>
     <text class="d-label-2" x="732" y="322">nothing to check</text>
-    <text class="d-label-2" x="732" y="399">nothing was written,</text>
+    <text class="d-label-2" x="732" y="399">nothing was written freely,</text>
     <text class="d-label-2" x="732" y="413">so nothing has to be caught</text>
   </svg>
   </div>
@@ -360,8 +360,8 @@
       <rect class="d-box" x="204" y="112" width="162" height="44"/>
       <text class="d-label" x="218" y="139">Your documents</text>
       <rect class="d-ghost" x="204" y="182" width="162" height="64"/>
-      <text class="d-ghost-text" x="298" y="211">no writing</text>
-      <text class="d-ghost-text" x="298" y="225">stage</text>
+      <text class="d-ghost-text" x="298" y="211">no free</text>
+      <text class="d-ghost-text" x="298" y="225">writing</text>
       <rect class="d-ghost" x="204" y="272" width="162" height="64"/>
       <text class="d-ghost-text" x="298" y="301">nothing</text>
       <text class="d-ghost-text" x="298" y="315">to check</text>
@@ -379,7 +379,7 @@
       <path d="M280 103 h10 l-5 8 z"/>
       <path d="M280 353 h10 l-5 8 z"/>
     </g>
-    <text class="d-label-2" x="204" y="444">nothing was written, so</text>
+    <text class="d-label-2" x="204" y="444">no free writing, so</text>
     <text class="d-label-2" x="204" y="458">nothing has to be caught</text>
   </svg>
   </div>
