@@ -184,10 +184,6 @@ img, svg { max-width: 100%; height: auto; }
 .note b { display: block; font-weight: 500; color: var(--ink); }
 .note a { color: inherit; text-decoration-color: var(--rule); }
 .note a:hover { color: var(--seal); }
-/* the company's mark, set inline in the note that names the company */
-.note .mk-inline { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; color: var(--ink); margin-right: 1px; }
-.note .co { white-space: nowrap; }
-
 /* quoted material carries the highlighter, and only quoted material */
 .quo {
   background: linear-gradient(var(--wash), var(--wash)) 0 88% / 100% 0.62em no-repeat;
