@@ -1,84 +1,77 @@
-// Progressive enhancement only. Every page reads and works without this file.
-
+/* Progressive enhancement only. The page is complete without this file. */
 (function () {
-  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* menu */
+  var t = document.querySelector('.nav-toggle');
+  var l = document.getElementById('nav-list');
+  if (t && l) t.addEventListener('click', function () {
+    var open = t.getAttribute('aria-expanded') === 'true';
+    t.setAttribute('aria-expanded', String(!open));
+    l.classList.toggle('open', !open);
+  });
 
-  // Mobile navigation ------------------------------------------------------
-
-  var navBtn = document.querySelector(".nav-toggle");
-  var nav = document.getElementById("nav");
-  if (navBtn && nav) {
-    navBtn.closest(".masthead").classList.add("js-nav");
-    navBtn.hidden = false;
-    function setNav(open) {
-      nav.classList.toggle("open", open);
-      navBtn.setAttribute("aria-expanded", String(open));
-    }
-    navBtn.addEventListener("click", function () {
-      setNav(!nav.classList.contains("open"));
+  /* reveals: open on hover with a fine pointer, close when the pointer leaves unless clicked; tap toggles */
+  if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('details.reveal').forEach(function (d) {
+      var sum = d.querySelector('summary');
+      if (!sum) return;
+      var pinned = false, byHover = false, tm;
+      d.addEventListener('mouseenter', function () {
+        clearTimeout(tm);
+        tm = setTimeout(function () { if (!d.open) { d.open = true; byHover = true; } }, 90);
+      });
+      d.addEventListener('mouseleave', function () {
+        clearTimeout(tm);
+        if (d.open && byHover && !pinned) d.open = false;
+        byHover = false;
+      });
+      sum.addEventListener('click', function (e) {
+        if (d.open && byHover && !pinned) { e.preventDefault(); pinned = true; byHover = false; return; } // keep it open
+        pinned = !d.open;                                                                                // opening by click pins it
+      });
     });
-    // Escape closes the menu and hands focus back to the button; a click or
-    // tap anywhere outside the masthead closes it too
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && nav.classList.contains("open")) {
-        setNav(false);
-        navBtn.focus();
+  }
+
+  /* figures: count up, dots fill, bars grow, rings draw, when the section comes into view */
+  var sections = document.querySelectorAll('[data-anim]');
+  if (!sections.length || reduce || !('IntersectionObserver' in window)) return;
+  var NUM = /^([^\d]*)([\d,]+)(.*)$/;
+  function ease(x) { return 1 - Math.pow(1 - x, 3); }
+  function prepare(sec) {
+    sec.querySelectorAll('.count').forEach(function (el) {
+      var m = NUM.exec(el.textContent.trim());
+      if (!m) return;
+      el.dataset.final = el.textContent;
+      el.dataset.pre = m[1]; el.dataset.val = m[2].replace(/,/g, ''); el.dataset.post = m[3]; el.dataset.comma = m[2].indexOf(',') >= 0 ? '1' : '';
+      el.textContent = m[1] + '0' + m[3];
+    });
+    sec.querySelectorAll('.dots i.x').forEach(function (i) { i.classList.remove('x'); i.classList.add('will'); });
+    sec.querySelectorAll('.bar i').forEach(function (i) { i.dataset.w = i.style.width; i.style.width = '0'; });
+    sec.querySelectorAll('.ring .arc').forEach(function (a) { a.dataset.v = a.style.getPropertyValue('--v'); a.style.setProperty('--v', '0'); });
+  }
+  function fmt(n, comma) { var s = String(n); return comma ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : s; }
+  function go(sec) {
+    sec.querySelectorAll('.count').forEach(function (el) {
+      if (!el.dataset.final) return;
+      var v = +el.dataset.val, t0 = null, dur = 1100;
+      function frame(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        el.textContent = el.dataset.pre + fmt(Math.round(v * ease(p)), el.dataset.comma) + el.dataset.post;
+        if (p < 1) requestAnimationFrame(frame); else el.textContent = el.dataset.final;
       }
+      requestAnimationFrame(frame);
     });
-    document.addEventListener("click", function (e) {
-      if (nav.classList.contains("open") && !navBtn.closest(".masthead").contains(e.target)) {
-        setNav(false);
-      }
+    sec.querySelectorAll('.dots').forEach(function (g) {
+      g.querySelectorAll('i.will').forEach(function (i, k) { setTimeout(function () { i.classList.remove('will'); i.classList.add('x'); }, 250 + k * 28); });
     });
+    sec.querySelectorAll('.bar i').forEach(function (i) { i.style.width = i.dataset.w; });
+    sec.querySelectorAll('.ring .arc').forEach(function (a) { a.style.setProperty('--v', a.dataset.v); });
   }
-
-  // Source binding ---------------------------------------------------------
-  // A mark in the text and its entry in the margin light up together, so the
-  // link between a statement and its source is visible before you click it.
-
-  function bind(mark) {
-    var note = document.getElementById((mark.getAttribute("href") || "").slice(1));
-    if (!note) return;
-    var pair = [mark, note];
-    function on() { pair.forEach(function (el) { el.classList.add("lit"); }); }
-    function off() { pair.forEach(function (el) { el.classList.remove("lit"); }); }
-
-    mark.addEventListener("mouseenter", on);
-    mark.addEventListener("mouseleave", off);
-    mark.addEventListener("focus", on);
-    mark.addEventListener("blur", off);
-    note.addEventListener("mouseenter", on);
-    note.addEventListener("mouseleave", off);
-
-    mark.addEventListener("click", function (e) {
-      e.preventDefault();
-      note.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
-      on();
-      window.setTimeout(off, 1800);
-    });
-  }
-
-  Array.prototype.forEach.call(document.querySelectorAll(".src"), bind);
-
-  // First-view reveal ------------------------------------------------------
-
-  var rising = document.querySelectorAll(".rise");
-  if (!rising.length) return;
-
-  if (reduced || !("IntersectionObserver" in window)) {
-    Array.prototype.forEach.call(rising, function (el) { el.classList.add("seen"); });
-    return;
-  }
-
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      e.target.classList.add("seen");
-      io.unobserve(e.target);
-    });
-  }, { rootMargin: "0px 0px -12% 0px" });
-
-  Array.prototype.forEach.call(rising, function (el) { io.observe(el); });
+  sections.forEach(prepare);
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { go(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.3 });
+  sections.forEach(function (s) { io.observe(s); });
 })();

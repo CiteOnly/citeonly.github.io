@@ -1,0 +1,15 @@
+# CiteOnly
+
+> CiteOnly is an AI model that answers questions using only verbatim passages from the documents it is given. Every line of an answer carries its source location. It cannot fabricate; when the documents do not answer, it says so.
+
+## Pages
+- [What CiteOnly replaces, and what it returns](https://citeonly.com/product/): CiteOnly replaces the agent, its guardrails and the audit-trail tool. It returns the passages of your documents that answer, word for word, each with its page.
+- [Who CiteOnly is for, and why it pays](https://citeonly.com/who/): For legal, financial services, pharma and healthcare teams whose answers have to show where they came from. What made-up answers cost, on the record.
+- [Request a CiteOnly pilot](https://citeonly.com/contact/): Request a pilot of CiteOnly on your own documents through the short form, or email sushant@citeonly.com.
+- [Privacy on citeonly.com](https://citeonly.com/privacy/): What citeonly.com collects: nothing on the site itself. No analytics, no cookies. The contact form is a Google Form and email goes to sushant@citeonly.com.
+- [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.
+- [CiteOnly: 0 factual hallucinations, answers from your documents](https://citeonly.com/): An AI model with 0 factual hallucinations. CiteOnly answers questions with the exact words of your documents and the page each line came from.
+- [About CiteOnly and who builds it](https://citeonly.com/about/): CiteOnly is built by Sushant Daga. An AI model with 0 factual hallucinations: it answers in the words of your documents, with the source on every line.
+
+## Contact
+- Email: sushant@citeonly.com
