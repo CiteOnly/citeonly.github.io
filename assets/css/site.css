@@ -598,3 +598,15 @@ details.reveal > summary h3::after, details.reveal > summary > span.who::after {
 .cmp .typed { font-size: 14px; line-height: 1.5; }
 .cmp .qt q { font-size: 17px; }
 @media (max-width: 900px) { .cmp { grid-template-columns: 1fr; } .rail, .rail.right, .leaders { display: none; } }
+
+/* founder, overlay notes 16 to 18: one icon per ledger line; the CiteOnly panel's type at normal size, never enlarged; broader boxes */
+.swap .ledger .glyphs { width: 28px; }
+.swap .ledger .glyphs svg { width: 26px; height: 26px; }
+.cmp .panel.ours .qt q { font-size: 16px; line-height: 1.5; }
+.cmp .panel.ours .qt .src { font-size: 13.5px; }
+.cmp .panel.ours .gap { font-size: 15px; }
+.compare-wrap .container { max-width: 1400px; }
+.cmp { grid-template-columns: 172px minmax(0, 1fr) minmax(0, 1fr) 172px; gap: 22px 14px; }
+.rail .stampx { max-width: 170px; font-size: 14px; padding: 7px 10px; }
+.rail.right .callout { max-width: 172px; font-size: 12.5px; padding: 7px 10px; }
+@media (max-width: 900px) { .cmp { grid-template-columns: 1fr; } }
