@@ -3,8 +3,8 @@
 > CiteOnly is an AI model that answers questions using only verbatim passages from the documents it is given. Every line of an answer carries its source location. It cannot fabricate; when the documents do not answer, it says so.
 
 ## Pages
-- [What CiteOnly replaces, and what it returns](https://citeonly.com/product/): CiteOnly replaces the agent, its guardrails and the audit-trail tool. It returns the passages of your documents that answer, word for word, each with its page.
-- [Who CiteOnly is for, and why it pays](https://citeonly.com/who/): For legal, financial services, pharma and healthcare teams whose answers have to show where they came from. What made-up answers cost, on the record.
+- [What CiteOnly is: an AI model with no free generation step](https://citeonly.com/product/): An AI model that has no free generation step, so every answer comes verbatim from your documents, each line with its document, section and page.
+- [Who CiteOnly is for, and why it pays](https://citeonly.com/who/): For legal, financial services, pharma and healthcare teams, and any work that has to show what an answer rested on. What made-up answers cost, on the record.
 - [Request a CiteOnly pilot](https://citeonly.com/contact/): Request a pilot of CiteOnly on your own documents through the short form, or email sushant@citeonly.com.
 - [Privacy on citeonly.com](https://citeonly.com/privacy/): What citeonly.com collects: nothing on the site itself. No analytics, no cookies. The contact form is a Google Form and email goes to sushant@citeonly.com.
 - [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.

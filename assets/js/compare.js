@@ -10,8 +10,6 @@
   var rail = document.getElementById('cmp-rail');
   var list = document.getElementById('cmp-stamps');
   var leaders = document.getElementById('cmp-leaders');
-  var guard = document.getElementById('cmp-guard');
-  var gs = document.getElementById('cmp-gs');
   var score = document.getElementById('cmp-score'), score2 = document.getElementById('cmp-score2');
   var nEl = document.getElementById('cmp-n'), qEl = document.getElementById('cmp-q');
   var answer = document.getElementById('cmp-answer');
@@ -38,7 +36,6 @@
     }).join('') + '<div class="gap on" id="cmp-gap"><b>' + esc(c.gap.lead) + '</b> ' + esc(c.gap.text) + '</div>';
     nEl.textContent = String(n);
     qEl.textContent = String(c.docs.length);
-    gs.textContent = 'Caught 0 of ' + n + ' hallucinated parts';
     buildRail();
   }
 
