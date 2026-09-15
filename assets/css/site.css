@@ -605,7 +605,9 @@ details.reveal > summary h3::after, details.reveal > summary > span.who::after {
 .cmp .panel.ours .qt q { font-size: 16px; line-height: 1.5; }
 .cmp .panel.ours .qt .src { font-size: 13.5px; }
 .cmp .panel.ours .gap { font-size: 15px; }
-.compare-wrap .container { max-width: 1400px; }
+/* the panels are broader than the page; the heading is not. Two containers rather than one, so each
+   caps and centres on its own and they agree at narrow widths (founder's note 18; the heading sat 100px out). */
+.compare-wrap .container.cmp-wide { max-width: 1400px; }
 .cmp { grid-template-columns: 172px minmax(0, 1fr) minmax(0, 1fr) 172px; gap: 22px 14px; }
 .rail .stampx { max-width: 170px; font-size: 14px; padding: 7px 10px; }
 .rail.right .callout { max-width: 172px; font-size: 12.5px; padding: 7px 10px; }
@@ -651,3 +653,6 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
   .swap .ledger .face { top: -18px; right: -6px; width: 36px; height: 36px; }
   .hero .swap { margin-top: 36px; }
 }
+
+/* on a phone the hidden comparison leaves two grey sections touching, which read as one band (round of 15 Sep) */
+@media (max-width: 820px) { main.home #why { border-top: 1px solid var(--rule); } }
