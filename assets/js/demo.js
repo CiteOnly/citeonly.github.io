@@ -63,7 +63,7 @@
       { transform: 'translate(' + dx * 0.5 + 'px,' + (dy * 0.5 - 24) + 'px) scale(1.03)', opacity: 1, offset: 0.5 },
       { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(0.98)', opacity: 0.95, offset: 0.9 },
       { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(0.98)', opacity: 0 }
-    ], { duration: 760, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
+    ], { duration: 320, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
     a.onfinish = function () { el.remove(); done(); };
   }
 
@@ -84,26 +84,26 @@
     if (gap) gap.classList.remove('on');
     askText.textContent = '';
     askText.classList.add('typing');
-    var q = s.question, i = 0, t = 0, step = 24;
+    var q = s.question, i = 0, t = 0, step = 8;   // the founder, 15 Sep: a very fast animation, with a gap between each quote
     for (i = 1; i <= q.length; i++) {
       (function (n) { later(function () { if (my === run) askText.textContent = q.slice(0, n); }, t); })(i);
       t += step;
     }
-    t += 300;
+    t += 150;
     later(function () { if (my === run) askText.classList.remove('typing'); }, t);
     docs.forEach(function (d, k) {
       var m = marks[k], qt = qts[k];
-      t += 250;
+      t += 120;
       later(function () { if (my === run) scrollTo(d, m); }, t);              // the page turns to the passage
-      t += 700;
+      t += 240;
       later(function () { if (my !== run) return; var sc = d.querySelector('.scan'); sc.classList.remove('go'); void sc.offsetWidth; sc.classList.add('go'); }, t); // the scan passes
-      t += 620;
+      t += 240;
       later(function () { if (my === run) m.classList.add('on'); }, t);      // the highlight lands
-      t += 780;
+      t += 150;
       later(function () { if (my === run) fly(m, qt, function () { if (my === run && qt) qt.classList.add('on'); }); }, t); // it flies into the answer
-      t += 820;
+      t += 320 + 500;   // the quote lands, then a gap before the next document
     });
-    t += 450;
+    t += 300;
     later(function () { if (my === run && gap) gap.classList.add('on'); }, t);
   }
 
