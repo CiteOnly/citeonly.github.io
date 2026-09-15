@@ -616,7 +616,6 @@ main.product .hero { padding-block: 48px 40px; }
 main.product .hero .swap { margin-top: 32px; }
 /* no comparison on phones: a wall of text there (founder, proposals card 3) */
 @media (max-width: 820px) { #compare-section { display: none; } main.home .hero { padding-bottom: 40px; } }
-}
 /* "[ CiteOnly ]" inside a heading takes the heading's size and weight; only the brackets are the wordmark's grey (founder, proposals card 25) */
 h2 .brand-name { font-size: inherit; font-weight: inherit; letter-spacing: inherit; font-stretch: 100%; }
 h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
