@@ -429,7 +429,17 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .door h2 { font-size: 1.6rem; margin-bottom: 10px; }
 .door p { max-width: 34ch; margin-bottom: 22px; }
 .door .btn { margin-top: 4px; }
+/* three doors on /contact/ are equal-height boxes, so their buttons sit on one baseline
+   whatever the copy wraps to. align-self keeps the button shrink-wrapped; the children above
+   still stretch as they did, so h2 and p wrap exactly as before. */
+.door { display: flex; flex-direction: column; }
+.door .btn { margin-top: auto; align-self: flex-start; }
 @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+/* /contact/ carries three routes: the booking page, the form, email. One column below 1040 so three
+   boxes never leave one orphan in a second row. .split.split-3 outranks the .split rule in the 760
+   query above, so the phone stack is restated here at that weight instead of relying on it. */
+.split-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 1040px) { .split.split-3 { grid-template-columns: 1fr; } }
 
 /* footer: the icon beside the wordmark */
 .foot .brand { display: inline-flex; align-items: center; gap: 10px; }
