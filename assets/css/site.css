@@ -659,12 +659,15 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
 
 /* the sector buttons line up with the heading, not with the wider panels (founder, d3) */
 .compare-wrap .demo-tabs { max-width: 1152px; margin-inline: auto; }
-/* on a phone the drawing shows all three lines, not one (founder, c5) */
+/* on a phone the box carries its word and two rows of icons on one line: money and time. The third
+   icon went because the word above it already says hallucinations (founder, 15 Sep, twice) */
 @media (max-width: 900px) {
-  .swap .short { display: none; }
-  .swap .ledger { display: block; padding: 12px 10px; }
-  .swap .ledger ul { display: grid; gap: 7px; font-size: 12.5px; }
-  .swap .ledger .glyphs { width: 54px; gap: 1px; }
-  .swap .ledger .glyphs svg { width: 17px; height: 17px; }
-  .swap .ledger li { gap: 7px; }
+  .swap .ledger { display: block; padding: 13px 10px 15px; text-align: center; }
+  .swap .ledger ul { display: flex; justify-content: center; align-items: center; gap: 14px; }
+  .swap .ledger li:last-child { display: none; }
+  .swap .ledger li { gap: 0; font-size: 0; }
+  .swap .ledger li > :not(.glyphs) { display: none; }
+  .swap .ledger .glyphs { width: auto; gap: 3px; }
+  .swap .ledger .glyphs svg { width: 24px; height: 24px; }
+  .swap .short { display: block; margin-bottom: 11px; font-weight: 700; font-size: 14px; }
 }
