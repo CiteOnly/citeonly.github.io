@@ -697,3 +697,10 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
   .roi th, .roi td { border-bottom: 0; padding: 0; }
   .roi td { margin-top: 4px; }
 }
+
+/* the film page, /film/: one video, unlinked from the nav. The frame never leaves the column and
+   never sets a height of its own, so a phone gets the same 16:9 box the desk does, only narrower. */
+.film { margin-top: 40px; max-width: 900px; }
+.film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--ink);
+  border: 1.5px solid var(--ink); border-radius: 12px; }
+.film-file { margin-top: 18px; font-size: 15px; color: var(--ink-2); }
