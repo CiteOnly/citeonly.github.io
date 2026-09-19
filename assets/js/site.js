@@ -33,36 +33,18 @@
     });
   }
 
-  /* figures: count up, dots fill, bars grow, rings draw, when the section comes into view */
+  /* figures: dots fill, bars grow, rings draw, when the section comes into view.
+     The printed figure never moves. It used to count up from zero, so until a section
+     was scrolled to it read 0%, and on the way up it read a number the page does not
+     claim. The picture animates; the number is the number. */
   var sections = document.querySelectorAll('[data-anim]');
   if (!sections.length || reduce || !('IntersectionObserver' in window)) return;
-  var NUM = /^([^\d]*)([\d,]+)(.*)$/;
-  function ease(x) { return 1 - Math.pow(1 - x, 3); }
   function prepare(sec) {
-    sec.querySelectorAll('.count').forEach(function (el) {
-      var m = NUM.exec(el.textContent.trim());
-      if (!m) return;
-      el.dataset.final = el.textContent;
-      el.dataset.pre = m[1]; el.dataset.val = m[2].replace(/,/g, ''); el.dataset.post = m[3]; el.dataset.comma = m[2].indexOf(',') >= 0 ? '1' : '';
-      el.textContent = m[1] + '0' + m[3];
-    });
     sec.querySelectorAll('.dots i.x').forEach(function (i) { i.classList.remove('x'); i.classList.add('will'); });
     sec.querySelectorAll('.bar i').forEach(function (i) { i.dataset.w = i.style.width; i.style.width = '0'; });
     sec.querySelectorAll('.ring .arc').forEach(function (a) { a.dataset.v = a.style.getPropertyValue('--v'); a.style.setProperty('--v', '0'); });
   }
-  function fmt(n, comma) { var s = String(n); return comma ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : s; }
   function go(sec) {
-    sec.querySelectorAll('.count').forEach(function (el) {
-      if (!el.dataset.final) return;
-      var v = +el.dataset.val, t0 = null, dur = 1100;
-      function frame(ts) {
-        if (t0 === null) t0 = ts;
-        var p = Math.min(1, (ts - t0) / dur);
-        el.textContent = el.dataset.pre + fmt(Math.round(v * ease(p)), el.dataset.comma) + el.dataset.post;
-        if (p < 1) requestAnimationFrame(frame); else el.textContent = el.dataset.final;
-      }
-      requestAnimationFrame(frame);
-    });
     sec.querySelectorAll('.dots').forEach(function (g) {
       g.querySelectorAll('i.will').forEach(function (i, k) { setTimeout(function () { i.classList.remove('will'); i.classList.add('x'); }, 250 + k * 28); });
     });
