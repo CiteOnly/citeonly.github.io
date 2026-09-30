@@ -8,8 +8,10 @@
 - [CiteOnly: 0 factual hallucinations, answers from your documents](https://citeonly.com/): An AI model with 0 factual hallucinations. CiteOnly answers questions with the exact words of your documents and the page each line came from.
 - [About CiteOnly and who builds it](https://citeonly.com/about/): CiteOnly is built by Sushant Daga. An AI model with 0 factual hallucinations: it answers in the words of your documents, with the source on every line.
 - [Talk to us about CiteOnly](https://citeonly.com/contact/): Tell us what your team gets asked. Book a call, drop your email, or write to sushant@citeonly.com.
-- [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.
 - [Privacy on citeonly.com](https://citeonly.com/privacy/): What citeonly.com counts: page views, through Cloudflare Web Analytics, with no cookies. The contact form is a Google Form; email goes to sushant@citeonly.com.
+- [CiteOnly on CUAD: contract review, checked against lawyers](https://citeonly.com/benchmarks/contracts/): CiteOnly on CUAD, the public contract review benchmark: every quote word for word from the contract, fewer clauses missed, a confidence on every answer.
+- [CiteOnly on FinQA: explainable reasoning on financial reports](https://citeonly.com/benchmarks/finance/): CiteOnly on FinQA, the benchmark for answers from annual reports: the working shown step by step, each number on the page, a confidence on each step.
+- [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.
 
 ## Contact
 - Email: sushant@citeonly.com
