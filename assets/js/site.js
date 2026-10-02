@@ -57,3 +57,19 @@
   }, { threshold: 0.3 });
   sections.forEach(function (s) { io.observe(s); });
 })();
+
+/* The email field: send to the Google Form without leaving the page. Google's reply is opaque to the page
+   (no-cors), so a sent request is reported as sent; a network failure says so and gives the address. */
+document.querySelectorAll('form[data-su]').forEach(function (f) {
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = f.querySelector('.su-input'), btn = f.querySelector('.su-send'), msg = f.querySelector('.su-msg');
+    if (!input.checkValidity()) { msg.textContent = 'That does not look like an email address.'; input.focus(); return; }
+    var addr = input.value.trim();
+    btn.disabled = true; msg.textContent = 'Sending…';
+    fetch(f.action, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(f)) })
+      .then(function () { f.classList.add('sent'); input.value = ''; msg.textContent = 'Thank you. We will write to ' + addr + '.'; })
+      .catch(function () { msg.textContent = 'That did not go through. Please write to sushant@citeonly.com.'; })
+      .then(function () { btn.disabled = false; });
+  });
+});

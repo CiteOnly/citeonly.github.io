@@ -1,0 +1,12 @@
+# Permanent redirects for moved addresses, read by Cloudflare (founder, 2 Oct 2026, tap b8). They run before any
+# file, so the meta-refresh pages at the same addresses (src/redirects.njk, from the same list) are only ever served
+# by the GitHub Pages fallback, which cannot issue a redirect.
+/industries/ /who/ 301
+/industries/legal/ /who/ 301
+/industries/financial-services/ /who/ 301
+/industries/healthcare-life-sciences/ /who/ 301
+/research/ /who/ 301
+/research/what-a-fabricated-citation-costs/ /who/ 301
+/research/what-regulators-will-ask-you-to-prove/ /who/ 301
+/research/checking-the-answer-afterwards/ /product/ 301
+

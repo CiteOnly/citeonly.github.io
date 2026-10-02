@@ -1,4 +1,10 @@
 /* CiteOnly v2 — design system. See docs/DESIGN.md. Single light theme: the ground is paper. */
+/* Fonts, self-hosted, trimmed to the weights, widths and characters the site uses (2 Oct 2026). Each file name
+   carries a hash of its content, so a changed font is a new name and the old one can be cached for good. */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 750;font-stretch:100% 112%;font-display:swap;src:url(/assets/fonts/archivo-var.4d33b1f2.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Archivo';font-style:italic;font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(/assets/fonts/archivo-italic-var.6ac36200.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/sourceserif4-var.898cf495.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:200 900;font-display:swap;src:url(/assets/fonts/sourceserif4-italic-var.6c9f4324.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
 :root {
   --paper: #ffffff;
   --paper-2: #f3f4f2;
@@ -80,7 +86,10 @@ p + p { margin-top: 0.9em; }
 .section-head { max-width: 680px; margin-bottom: 44px; }
 .section-head p { margin-top: 14px; font-size: 1.15rem; line-height: 1.5; max-width: 52ch; }
 .hero { padding-block: 72px 56px; }
-.hero .lede { max-width: 44ch; }
+/* A hero line is one or two sentences, so it gets a wider measure than body text: a one-sentence line stays on
+   one line on a laptop, and a longer one breaks into even lines (founder, 2 Oct 2026, on /product/: "why have a
+   line break at all? GIve me reason or remove it"). Phones wrap it naturally. */
+.hero .lede { max-width: 62ch; text-wrap: balance; }
 .more { margin-top: 28px; font-weight: 500; }
 
 /* the desk: question, documents, answer */
@@ -440,6 +449,17 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
    query above, so the phone stack is restated here at that weight instead of relying on it. */
 .split-3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 1040px) { .split.split-3 { grid-template-columns: 1fr; } }
+/* the email door (founder, 2 Oct 2026, change list c27: "every section in un-naturally extended"): the field
+   is the door's action, so it takes the same shape as the other two: one line, then one row at the bottom,
+   the field and Send side by side. The three boxes then stretch by nothing. */
+.door .su { display: flex; flex-direction: column; flex: 1; gap: 0; margin-top: 0; max-width: none; }
+.door .su-label { font: inherit; color: inherit; max-width: 34ch; margin-bottom: 22px; }
+.door .su-row { margin-top: auto; flex-wrap: nowrap; }
+.door .su-input { flex: 1 1 0; padding-block: 12px; }
+.door .su-send { padding-inline: 18px; }
+.door .su-msg { min-height: 0; margin-top: 6px; font-size: 14px; }
+.door .su-msg:empty { display: none; }
+.door-more { margin-top: 18px; color: var(--ink-3); }
 
 /* footer: the icon beside the wordmark */
 .foot .brand { display: inline-flex; align-items: center; gap: 10px; }
@@ -704,3 +724,18 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
 .film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--ink);
   border: 1.5px solid var(--ink); border-radius: 12px; }
 .film-file { margin-top: 18px; font-size: 15px; color: var(--ink-2); }
+
+/* The email field (founder, 2 Oct 2026, taps b4 and b6): the end of every page and after each benchmark demo.
+   Mobile-first; the row wraps, so nothing here needs a phone restatement. */
+.su { display: grid; gap: 8px; margin-top: 24px; max-width: 560px; }
+.su-label { font: 500 16px/1.35 var(--sans); color: var(--ink-2); }
+.su-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.su-input { flex: 1 1 240px; min-width: 0; font: 400 17px/1.2 var(--sans); padding: 13px 14px; border: 1.5px solid var(--ink); border-radius: var(--r); background: var(--paper); color: var(--ink); }
+.su-input::placeholder { color: var(--ink-3); }
+.su-input:focus-visible { outline: 3px solid var(--mark-2); outline-offset: 2px; }
+.su-send { font: 600 16px/1.2 var(--sans); padding: 13px 24px; border: 1.5px solid var(--ink); border-radius: var(--r); background: var(--ink); color: var(--paper); cursor: pointer; }
+.su-send:hover { background: #222; }
+.su-send:focus-visible { outline: 3px solid var(--mark-2); outline-offset: 2px; }
+.su-send:disabled { opacity: .6; cursor: default; }
+.su-msg { font: 400 15px/1.4 var(--sans); color: var(--ink-2); min-height: 1.4em; margin: 0; }
+.su.sent .su-msg { color: var(--ink); font-weight: 600; }
