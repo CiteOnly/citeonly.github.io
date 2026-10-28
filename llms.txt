@@ -10,8 +10,9 @@
 - [Privacy on citeonly.com](https://citeonly.com/privacy/): What citeonly.com counts: page views, through Cloudflare Web Analytics, with no cookies. The contact form is a Google Form; email goes to sushant@citeonly.com.
 - [CiteOnly on CUAD: contract review, checked against lawyers](https://citeonly.com/benchmarks/contracts/): CiteOnly on CUAD, the public contract review benchmark: every quote word for word from the contract, fewer clauses missed, a confidence on every answer.
 - [CiteOnly on FinQA: explainable reasoning on financial reports](https://citeonly.com/benchmarks/finance/): CiteOnly on FinQA, the benchmark for answers from annual reports: the working shown step by step, each number on the page, a confidence on each step.
-- [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.
 - [CiteOnly: 0 factual hallucinations, answers from your documents](https://citeonly.com/): 0 factual hallucinations. AI answers your team can sign off at a glance: every line is a quote from your documents.
+- [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.
+- [CiteOnly for customs: a provably optimal year of imports](https://citeonly.com/customs/): A year of imports through Indian customs, planned at the lowest cost, with the proof that no plan costs less.
 
 ## Contact
 - Email: sushant@citeonly.com
