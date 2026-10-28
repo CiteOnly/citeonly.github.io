@@ -1,18 +1,18 @@
 # CiteOnly
 
-> CiteOnly is an AI model that answers questions using only verbatim passages from the documents it is given. Every line of an answer carries its source location. It cannot fabricate; when the documents do not answer, it says so.
+> CiteOnly answers questions only from the documents it is given. Guardrails are built in: it cannot invent a fact, and when the documents do not answer, it says so.
 
 ## Pages
-- [What CiteOnly is: every answer verbatim from your documents](https://citeonly.com/product/): What CiteOnly is: an AI model where every answer comes verbatim from your documents, and checking it is reading it.
-- [Who CiteOnly is for, and why it pays](https://citeonly.com/who/): For legal, financial services, pharma and healthcare teams, and any work that has to show what an answer rested on. What made-up answers cost, on the record.
-- [About CiteOnly and who builds it](https://citeonly.com/about/): CiteOnly is built by Sushant Daga. An AI model with 0 factual hallucinations: it answers in the words of your documents, with the source on every line.
 - [Talk to us about CiteOnly](https://citeonly.com/contact/): Tell us what your team gets asked. Book a call, drop your email, or write to sushant@citeonly.com.
 - [Privacy on citeonly.com](https://citeonly.com/privacy/): What citeonly.com counts: page views, through Cloudflare Web Analytics, with no cookies. The contact form is a Google Form; email goes to sushant@citeonly.com.
-- [CiteOnly on CUAD: contract review, checked against lawyers](https://citeonly.com/benchmarks/contracts/): CiteOnly on CUAD, the public contract review benchmark: every quote word for word from the contract, fewer clauses missed, a confidence on every answer.
-- [CiteOnly on FinQA: explainable reasoning on financial reports](https://citeonly.com/benchmarks/finance/): CiteOnly on FinQA, the benchmark for answers from annual reports: the working shown step by step, each number on the page, a confidence on each step.
-- [CiteOnly: 0 factual hallucinations, answers from your documents](https://citeonly.com/): 0 factual hallucinations. AI answers your team can sign off at a glance: every line is a quote from your documents.
+- [About CiteOnly and who builds it](https://citeonly.com/about/): CiteOnly is built by Sushant Daga. 0 factual hallucinations: it answers from your documents alone, with guardrails built in.
 - [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.
 - [CiteOnly for customs: a provably optimal year of imports](https://citeonly.com/customs/): A year of imports through Indian customs, planned at the lowest cost, with the proof that no plan costs less.
+- [CiteOnly: 0 factual hallucinations, answers from your documents](https://citeonly.com/): 0 factual hallucinations. AI answers your team can sign off at a glance, from your documents alone.
+- [What CiteOnly is: answers from your documents alone](https://citeonly.com/product/): What CiteOnly is: answers from your documents alone, with guardrails built in, so checking an answer is reading it.
+- [Who CiteOnly is for, and why it pays](https://citeonly.com/who/): For legal, financial services, pharma and healthcare teams, and any work that has to show what an answer rested on. What made-up answers cost, on the record.
+- [CiteOnly on FinQA: financial answers, worked out, nothing invented](https://citeonly.com/benchmarks/finance/): An early demonstration of CiteOnly on FinQA, the public test on annual reports: every answer worked out step by step, nothing invented.
+- [CiteOnly on CUAD: contract review, checked against lawyers](https://citeonly.com/benchmarks/contracts/): An early demonstration of CiteOnly on CUAD, the public contract review test: the whole checklist answered, nothing invented, fewer clauses missed.
 
 ## Contact
 - Email: sushant@citeonly.com

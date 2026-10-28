@@ -1,6 +1,3 @@
-/* CiteOnly v2 — design system. See docs/DESIGN.md. Single light theme: the ground is paper. */
-/* Fonts, self-hosted, trimmed to the weights, widths and characters the site uses (2 Oct 2026). Each file name
-   carries a hash of its content, so a changed font is a new name and the old one can be cached for good. */
 @font-face{font-family:'Archivo';font-style:normal;font-weight:400 750;font-stretch:100% 112%;font-display:swap;src:url(/assets/fonts/archivo-var.4d33b1f2.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
 @font-face{font-family:'Archivo';font-style:italic;font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(/assets/fonts/archivo-italic-var.6ac36200.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
 @font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/sourceserif4-var.898cf495.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
@@ -48,16 +45,12 @@ p + p { margin-top: 0.9em; }
 .container { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
 .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--paper); padding: 8px 12px; border-radius: var(--r); z-index: 10; }
 .skip:focus { left: 8px; }
-
-/* buttons */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: var(--r); font: 500 16px/1.2 var(--sans); text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; transition: background .15s, color .15s; }
 .btn:hover { background: var(--paper-2); text-decoration: none; }
 .btn-primary { background: var(--ink); color: var(--paper); }
 .btn-primary:hover { background: #222; }
 .btn-sm { padding: 9px 14px; font-size: 15px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-
-/* top bar */
 .top { border-bottom: 1px solid var(--rule); background: var(--paper); }
 .top-row { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -79,20 +72,13 @@ p + p { margin-top: 0.9em; }
   .nav-list .nav-cta { margin-top: 8px; }
   .top { position: relative; }
 }
-
-/* sections */
 .section { padding-block: 88px; }
 .section.alt { background: var(--paper-2); }
 .section-head { max-width: 680px; margin-bottom: 44px; }
 .section-head p { margin-top: 14px; font-size: 1.15rem; line-height: 1.5; max-width: 52ch; }
 .hero { padding-block: 72px 56px; }
-/* A hero line is one or two sentences, so it gets a wider measure than body text: a one-sentence line stays on
-   one line on a laptop, and a longer one breaks into even lines (founder, 2 Oct 2026, on /product/: "why have a
-   line break at all? GIve me reason or remove it"). Phones wrap it naturally. */
 .hero .lede { max-width: 62ch; text-wrap: balance; }
 .more { margin-top: 28px; font-weight: 500; }
-
-/* the desk: question, documents, answer */
 .demo { margin-top: 56px; }
 .demo-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
 .tab { padding: 8px 14px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); font: 500 15px/1.2 var(--sans); color: var(--ink-2); cursor: pointer; }
@@ -129,14 +115,10 @@ p + p { margin-top: 0.9em; }
   .desk { grid-template-columns: 1fr; padding: 16px; }
   .ask { font-size: 1.05rem; flex-direction: column; gap: 4px; }
 }
-
-/* gains */
 .gains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px; }
 .gain svg { display: block; width: 56px; height: 56px; margin-bottom: 18px; }
 .gain h3 { margin-bottom: 10px; }
 .gain p { max-width: 36ch; }
-
-/* comparison */
 .compare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
 .panel { border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); padding: 18px 20px 20px; }
 .panel.ours { background: var(--mark-soft); border-color: var(--mark-edge); }
@@ -152,21 +134,15 @@ p + p { margin-top: 0.9em; }
 .compare .verdict:not(.on) { opacity: 0; }
 .verdict b { color: var(--ink); font-weight: 600; }
 @media (max-width: 820px) { .compare { grid-template-columns: 1fr; } }
-
-/* sectors */
 .sectors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
 .sector h3 { margin-bottom: 10px; }
 .sector .who { font-size: 14.5px; color: var(--ink-3); margin-top: 10px; }
 .sector .who b { color: var(--ink-2); font-weight: 600; }
-
-/* costs */
 .costs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
 .cost .num { display: block; font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; margin-bottom: 12px; }
 .cost p { max-width: 34ch; }
 .cost .cite { display: block; margin-top: 10px; font-size: 13.5px; color: var(--ink-3); }
 .cost .cite a { color: var(--ink-3); }
-
-/* pipeline */
 .pipe { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 0; }
 .node { border: 1.5px solid var(--ink); border-radius: var(--r); padding: 11px 16px; font-weight: 500; color: var(--ink); background: var(--paper); }
 .node.ours { background: var(--mark); }
@@ -183,12 +159,8 @@ p + p { margin-top: 0.9em; }
   .two-col { grid-template-columns: 1fr; gap: 32px; }
   .section { padding-block: 64px; }
 }
-
-/* cta */
 .cta-band h2 { max-width: 20ch; }
 .cta-band .lede { margin-top: 14px; }
-
-/* prose pages */
 .prose { max-width: 66ch; }
 .prose h2 { margin-top: 48px; margin-bottom: 14px; font-size: 1.7rem; }
 .prose h3 { margin-top: 30px; margin-bottom: 8px; }
@@ -204,8 +176,6 @@ p + p { margin-top: 0.9em; }
 .faq summary::after { content: '+'; color: var(--ink-3); font-weight: 400; }
 .faq details[open] summary::after { content: '\2013'; }
 .faq details p { margin-top: 10px; max-width: 62ch; }
-
-/* footer */
 .foot { background: var(--ink); color: #c9ccd1; padding-block: 56px 40px; margin-top: 0; }
 .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
 .foot .brand-name { color: var(--paper); }
@@ -215,24 +185,17 @@ p + p { margin-top: 0.9em; }
 .foot a:hover { text-decoration: underline; }
 .foot-copy { font-size: 14px; color: #9aa0a8; }
 @media (max-width: 820px) { .foot-grid { grid-template-columns: 1fr; gap: 28px; } }
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
 }
-
-/* product: anatomy */
 .anatomy .answer { margin-bottom: 18px; }
 .callouts { margin: 0; padding-left: 1.4em; display: grid; gap: 10px; counter-reset: c; list-style: none; }
 .callouts li { position: relative; padding-left: 8px; }
 .callouts li::before { counter-increment: c; content: counter(c); position: absolute; left: -1.4em; top: 0.15em; width: 20px; height: 20px; border: 1.5px solid var(--ink); border-radius: 4px; font-size: 12px; font-weight: 600; display: grid; place-items: center; color: var(--ink); }
 .callouts b { color: var(--ink); font-weight: 600; }
-
-/* sector icons */
 .sector-icon { display: block; width: 64px; height: 64px; margin-bottom: 16px; }
 .gain svg { width: 64px; height: 64px; }
-
-/* why: table, quotes, cites */
 .cite { display: block; margin-top: 10px; font-size: 13.5px; color: var(--ink-3); }
 .cite a { color: var(--ink-3); }
 p.cite { margin-top: 28px; max-width: 70ch; }
@@ -249,8 +212,6 @@ p.cite { margin-top: 28px; max-width: 70ch; }
 .quotes footer { margin-top: 10px; font-size: 14px; color: var(--ink-3); }
 .quotes footer a { color: var(--ink-3); }
 @media (max-width: 820px) { .quotes { grid-template-columns: 1fr; } }
-
-/* pipeline on a phone: stacked, arrows turned downward */
 @media (max-width: 600px) {
   .pipe { flex-direction: column; align-items: flex-start; gap: 6px; }
   .arrow { width: 2px; height: 30px; margin-left: 22px; }
@@ -258,8 +219,6 @@ p.cite { margin-top: 28px; max-width: 70ch; }
   .arrow i { left: -4px; top: 0; }
   @keyframes travel { 0% { transform: translateY(-6px); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(22px); opacity: 0; } }
 }
-
-/* benchmark bars */
 .bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; max-width: 980px; }
 .bars li { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr) 110px; gap: 18px; align-items: center; }
 .bar-label { font-weight: 600; color: var(--ink); line-height: 1.3; }
@@ -274,16 +233,10 @@ p.cite { margin-top: 28px; max-width: 70ch; }
   .bar-label { grid-column: 1 / -1; }
   .bar-val { font-size: 15px; }
 }
-
-/* ---------------------------------------------------------------- round 2 */
-
-/* wordmark C: the bracketed word */
 .brand-name .bk { font-weight: 400; color: var(--ink-3); font-stretch: 100%; }
 .brand-name .bk:first-child { margin-right: 0.3em; }
 .brand-name .bk:last-child { margin-left: 0.3em; }
 .foot .brand-name .bk { color: #9aa0a8; }
-
-/* reveal: the title is visible, the text opens on hover or tap */
 details.reveal { margin: 0; }
 details.reveal > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: flex-start; gap: 12px; color: var(--ink); font-weight: 600; }
 details.reveal > summary::-webkit-details-marker { display: none; }
@@ -301,8 +254,6 @@ details.reveal summary.small::after { width: 20px; height: 20px; font-size: 15px
 details.reveal[open] summary.small::after { color: var(--ink); border-color: var(--ink); }
 .gains, .sectors, .figs { align-items: start; }
 .gain details.reveal, .sector details.reveal { margin-top: 0; }
-
-/* figures: a dot grid, a big number, a short label, the source behind a reveal */
 .figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; }
 .fig .num { display: block; font-size: clamp(2.6rem, 4.4vw, 3.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: 18px; }
 .fig.ours .num { display: inline-block; background: var(--mark); padding: 0.02em 0.22em; border-radius: 8px; }
@@ -327,8 +278,6 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .seal-card { flex: 1 1 220px; max-width: 320px; }
 .seal-card .seal { font-size: 20px; padding: 8px 14px; margin-bottom: 14px; }
 @media (max-width: 900px) { .figs { grid-template-columns: 1fr; gap: 36px; } }
-
-/* the desk, round 2: each document is a window onto a longer page */
 .doc-win { position: relative; }
 .doc-win.view { height: 172px; overflow: hidden; }
 .doc-win.view::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 30px; background: linear-gradient(rgba(255, 255, 255, 0), var(--paper)); pointer-events: none; }
@@ -338,8 +287,6 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .scan.go { animation: sweep .8s ease-in-out; }
 @keyframes sweep { 0% { top: 0; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: calc(100% - 3px); opacity: 0; } }
 .fly { position: fixed; z-index: 20; pointer-events: none; font-family: var(--serif); font-size: 15.5px; line-height: 1.35; background: var(--mark); color: var(--ink); padding: 4px 9px; border-radius: 5px; box-shadow: 0 8px 22px rgba(0, 0, 0, .18); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-/* the comparison, round 2: tags on each invented span, a guardrail that passes them */
 .typed { min-height: 8.5em; }
 .typed .tag { display: inline-block; vertical-align: middle; margin: 0 6px 0 5px; border: 1.5px solid var(--stamp); color: var(--stamp); border-radius: 3px; padding: 1px 6px; font: 600 12px/1.3 var(--sans); letter-spacing: 0.01em; transform: rotate(-2deg); opacity: 0; transition: opacity .3s; white-space: nowrap; }
 .typed .tag.on { opacity: 1; }
@@ -350,8 +297,6 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .guard .tick::after { content: ''; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid var(--ink); border-width: 0 2px 2px 0; transform: rotate(45deg); }
 .compare-wrap .demo-tabs { margin-bottom: 14px; }
 .verdict { min-height: 2.6em; }
-
-/* product: the three parts, drawn */
 .parts { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 56px; align-items: center; position: relative; }
 .parts .answer { position: relative; z-index: 1; }
 .parts .labels { display: grid; gap: 22px; align-content: center; }
@@ -366,13 +311,9 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .parts .qt.hot q, .parts .qt.hot .src { background: var(--mark-soft); }
 .parts .gap.hot { border-color: var(--ink); background: var(--mark-soft); }
 @media (max-width: 820px) { .parts { grid-template-columns: 1fr; } .wires { display: none; } }
-
-/* icon rows: a picture and a title each, the sentence behind a reveal */
 .icons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; align-items: start; }
 .icon-item svg { display: block; width: 64px; height: 64px; margin-bottom: 16px; }
 @media (max-width: 900px) { .icons { grid-template-columns: 1fr; gap: 32px; } }
-
-/* why: the orders as bars, the regulators as seals */
 .orders-chart { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; max-width: 980px; }
 .orders-chart li { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr) 130px; gap: 16px; align-items: center; }
 .orders-chart .bar { height: 30px; }
@@ -405,15 +346,10 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .reg details.reveal > summary::after { margin-top: 2px; }
 .seal-card details.reveal > summary { font-size: 1.05rem; }
 .orders-chart .bar-label small { display: block; font-weight: 400; font-size: 13.5px; color: var(--ink-3); margin-top: 2px; }
-
-/* ---------------------------------------------------------------- round 3 */
-
 @media (max-width: 820px) {
   .desk .ask { order: -2; }
   .desk .answer { order: -1; }
 }
-
-/* the replacement: today's chain against CiteOnly, one grid so the columns line up */
 .swap { display: grid; grid-template-columns: auto minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(0, 1.35fr); gap: 18px 6px; align-items: center; }
 .swap .lbl { font-size: 13.5px; font-weight: 600; color: var(--ink-3); padding-right: 10px; white-space: nowrap; }
 .swap .node { text-align: center; padding: 11px 10px; font-size: 15.5px; }
@@ -431,27 +367,16 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
   .swap .arrow { display: none; }
   .swap .node.wide { display: block; }
 }
-
-/* contact: two doors */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 40px; }
 .door { border: 1.5px solid var(--ink); border-radius: 12px; padding: 32px 28px; }
 .door h2 { font-size: 1.6rem; margin-bottom: 10px; }
 .door p { max-width: 34ch; margin-bottom: 22px; }
 .door .btn { margin-top: 4px; }
-/* three doors on /contact/ are equal-height boxes, so their buttons sit on one baseline
-   whatever the copy wraps to. align-self keeps the button shrink-wrapped; the children above
-   still stretch as they did, so h2 and p wrap exactly as before. */
 .door { display: flex; flex-direction: column; }
 .door .btn { margin-top: auto; align-self: flex-start; }
 @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
-/* /contact/ carries three routes: the booking page, the form, email. One column below 1040 so three
-   boxes never leave one orphan in a second row. .split.split-3 outranks the .split rule in the 760
-   query above, so the phone stack is restated here at that weight instead of relying on it. */
 .split-3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 1040px) { .split.split-3 { grid-template-columns: 1fr; } }
-/* the email door (founder, 2 Oct 2026, change list c27: "every section in un-naturally extended"): the field
-   is the door's action, so it takes the same shape as the other two: one line, then one row at the bottom,
-   the field and Send side by side. The three boxes then stretch by nothing. */
 .door .su { display: flex; flex-direction: column; flex: 1; gap: 0; margin-top: 0; max-width: none; }
 .door .su-label { font: inherit; color: inherit; max-width: 34ch; margin-bottom: 22px; }
 .door .su-row { margin-top: auto; flex-wrap: nowrap; }
@@ -460,30 +385,19 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .door .su-msg { min-height: 0; margin-top: 6px; font-size: 14px; }
 .door .su-msg:empty { display: none; }
 .door-more { margin-top: 18px; color: var(--ink-3); }
-
-/* footer: the icon beside the wordmark */
 .foot .brand { display: inline-flex; align-items: center; gap: 10px; }
 .foot .brand-mark { width: 28px; height: 28px; flex: none; }
 .foot .brand-mark .tile { fill: #2a2e34; }
-
-/* product: the parts light up on hover, all three */
 .parts q.hot, .parts .src.hot { background: var(--mark-soft); box-shadow: 0 0 0 3px var(--mark-soft); border-radius: 3px; }
-
-/* the three people on the who page: a line each, the rest behind the reveal */
 .icon-item .line { display: block; margin-top: 8px; font-size: 1.05rem; color: var(--ink); line-height: 1.4; max-width: 30ch; }
 .icon-item details.reveal { margin-top: 10px; }
 .icon-item details.reveal > summary.small { margin-top: 0; }
-/* product: retrieval with citations against CiteOnly, by outcome */
 .vs { border-collapse: collapse; width: 100%; margin-top: 16px; font-size: 15px; }
 .vs th, .vs td { text-align: left; vertical-align: top; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); }
 .vs thead th { font-weight: 600; color: var(--ink); font-size: 14px; }
 .vs tbody th { font-weight: 600; color: var(--ink-2); width: 30%; }
 .vs td:last-child { color: var(--ink); font-weight: 500; background: var(--mark-soft); padding-left: 10px; }
 .vs thead th:last-child { background: var(--mark); padding-left: 10px; }
-
-/* ---------------------------------------------------------------- round 4 */
-
-/* the replacement, redrawn from the founder's board and their overlay notes: the chain ends in a ledger, the face is a label over it */
 .swap { grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(280px, 330px); gap: 30px 6px; }
 .swap .node.wide { grid-column: span 5; }
 .swap .ledger { position: relative; margin-left: 10px; padding: 16px 18px 16px 20px; border: 1.5px solid var(--ink); border-radius: var(--r); background: var(--paper); }
@@ -505,33 +419,23 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
   .swap .ledger .face { top: -20px; right: 12px; }
   .hero .swap { margin-top: 36px; }
 }
-
-/* four figures in a row */
 .figs.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 28px; }
 .figs.four .fig .lab { max-width: 24ch; }
 @media (max-width: 1000px) { .figs.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .figs.four { grid-template-columns: 1fr; } }
-
-/* product: the parts labels sit nearer the window */
 .parts { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px 36px; max-width: 980px; margin-inline: auto; }
-
-/* product: retrieval with citations against CiteOnly, by outcome, with a mark in each cell */
 .vs i { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; margin-right: 7px; vertical-align: -3px; font-style: normal; font-size: 11px; font-weight: 700; line-height: 1; }
 .vs i.no { border: 1.5px solid var(--stamp); color: var(--stamp); }
 .vs i.no::before { content: '\2715'; }
 .vs i.yes { background: var(--mark); border: 1.5px solid var(--ink); color: var(--ink); }
 .vs i.yes::before { content: '\2713'; }
 .faq details .vs { margin-top: 12px; }
-
-/* home on a phone: no desk; the comparison is the first thing under the headline (founder, round 3 c10) */
 @media (max-width: 820px) {
   main.home { display: flex; flex-direction: column; }
   main.home .hero { order: -2; padding-bottom: 8px; }
   main.home #compare-section { order: -1; padding-top: 24px; }
   main.home .hero .demo, main.home .hero a[href="#demo"] { display: none; }
 }
-
-/* the comparison, round 3: stamps outside the box with leader lines, a guardrail that catches nothing */
 .cmp { display: grid; grid-template-columns: 168px minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; position: relative; }
 .rail { position: relative; align-self: stretch; }
 .stampx { display: inline-block; border: 2px solid var(--stamp); color: var(--stamp); border-radius: 4px; padding: 5px 9px; font: 700 12.5px/1.2 var(--sans); letter-spacing: .04em; text-transform: uppercase; text-align: center; background: var(--paper); transform: rotate(-3deg); }
@@ -573,9 +477,6 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
   .rail, .leaders { display: none; }
   .cmp.js .stamp-list { display: flex; }
 }
-
-/* round 4, minor adjustments to the round-3 comparison, from the founder's notes only:
-   the margin text is large, the stamps sit against the panel, the lines are solid with an arrowhead, the counts are larger */
 .cmp { grid-template-columns: 236px minmax(0, 1fr) minmax(0, 1fr); gap: 22px 16px; }
 .rail .stampx { left: auto; right: 0; width: auto; max-width: 236px; font-size: 17px; padding: 9px 13px; letter-spacing: .03em; line-height: 1.15; }
 .rail .stampx i { width: 24px; height: 24px; font-size: 13px; margin-right: 8px; vertical-align: -5px; }
@@ -586,8 +487,6 @@ details.reveal[open] summary.small::after { color: var(--ink); border-color: var
 .score b { font-size: 3.2rem; }
 .score span { font-size: 14px; color: var(--ink-2); max-width: 15ch; }
 @media (max-width: 900px) { .cmp { grid-template-columns: 1fr; } .rail, .leaders { display: none; } }
-
-/* the reveal marker follows the last word of its title, so a wrapped title never pushes it to the far edge (founder, overlay, product note 4) */
 details.reveal > summary { display: block; }
 details.reveal > summary h3, details.reveal > summary > span.line, details.reveal > summary > span.who { display: inline; }
 details.reveal > summary::after { display: inline-grid; vertical-align: middle; margin-left: 10px; }
@@ -596,12 +495,8 @@ details.reveal > summary.small::after { margin-left: 8px; }
 .sectors.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
 @media (max-width: 1000px) { .sectors.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .sectors.four { grid-template-columns: 1fr; } }
-/* phone layout for the product parts, restated after the wide rule above it in the cascade (a round-4 cut removed the earlier restatement) */
 @media (max-width: 820px) { .parts { grid-template-columns: 1fr; max-width: none; } }
-/* the reveal marker stays with the last word of its title: a word joiner before the marker forbids the break */
 details.reveal > summary h3::after, details.reveal > summary > span.who::after { content: '\2060'; }
-
-/* the comparison's final touches (founder, overlay, 14 Sep 2026 22:00): the left reads as a wall of text, the right stays light, nothing boxed */
 .cmp .typed { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); min-height: 0; }
 .cmp .panel.theirs .ask-line, .cmp #cmp-left .ask-line { font-size: 1rem; margin-bottom: 10px; }
 .cmp .panel.ours { padding: 24px 28px 26px; }
@@ -613,8 +508,6 @@ details.reveal > summary h3::after, details.reveal > summary > span.who::after {
 .cmp .panel.ours .qt .src { margin-top: 8px; }
 .cmp .panel.ours .gap { border: 0; border-left: 2px dashed var(--ink-3); border-radius: 0; padding: 2px 0 2px 14px; margin-top: 18px; background: transparent; }
 .cmp .panel.ours .score { margin-top: 22px; }
-
-/* the comparison, centred: a margin each side, callouts pointing into the CiteOnly panel, both panels white (founder, overlay note 15) */
 .cmp { grid-template-columns: 190px minmax(0, 1fr) minmax(0, 1fr) 190px; gap: 22px 16px; }
 .rail.right { position: relative; align-self: stretch; }
 .rail.right .callout { position: absolute; left: 0; display: inline-block; max-width: 190px; border: 2px solid var(--ink); background: var(--mark); color: var(--ink); border-radius: 4px; padding: 8px 12px; font: 700 13.5px/1.15 var(--sans); letter-spacing: .03em; text-transform: uppercase; transform: rotate(var(--tilt, 2deg)); box-shadow: 0 1px 0 rgba(0, 0, 0, .05); }
@@ -628,40 +521,26 @@ details.reveal > summary h3::after, details.reveal > summary > span.who::after {
 .cmp .typed { font-size: 14px; line-height: 1.5; }
 .cmp .qt q { font-size: 17px; }
 @media (max-width: 900px) { .cmp { grid-template-columns: 1fr; } .rail, .rail.right, .leaders { display: none; } }
-
-/* founder, overlay notes 16 to 18: one icon per ledger line; the CiteOnly panel's type at normal size, never enlarged; broader boxes */
 .swap .ledger .glyphs { width: 82px; gap: 2px; }
 .swap .ledger .glyphs svg { width: 26px; height: 26px; }
 .cmp .panel.ours .qt q { font-size: 16px; line-height: 1.5; }
 .cmp .panel.ours .qt .src { font-size: 13.5px; }
 .cmp .panel.ours .gap { font-size: 15px; }
-/* the panels are broader than the page; the heading is not. Two containers rather than one, so each
-   caps and centres on its own and they agree at narrow widths (founder's note 18; the heading sat 100px out). */
 .compare-wrap .container.cmp-wide { max-width: 1400px; }
 .cmp { grid-template-columns: 172px minmax(0, 1fr) minmax(0, 1fr) 172px; gap: 22px 14px; }
 .rail .stampx { max-width: 170px; font-size: 14px; padding: 7px 10px; }
 .rail.right .callout { max-width: 172px; font-size: 12.5px; padding: 7px 10px; }
 @media (max-width: 900px) { .cmp { grid-template-columns: 1fr; } }
-
-/* product hero on a laptop: the drawing's ledger above the fold (founder, proposals card 4) */
 main.product .hero { padding-block: 48px 40px; }
 main.product .hero .swap { margin-top: 32px; }
-/* no comparison on phones: a wall of text there (founder, proposals card 3) */
 @media (max-width: 820px) { #compare-section { display: none; } main.home .hero { padding-bottom: 40px; } }
-/* "[ CiteOnly ]" inside a heading takes the heading's size and weight; only the brackets are the wordmark's grey (founder, proposals card 25) */
 h2 .brand-name { font-size: inherit; font-weight: inherit; letter-spacing: inherit; font-stretch: 100%; }
 h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
-/* the two comparison panels are the same height */
 .cmp { align-items: stretch; }
-
-/* regulator cards: no yellow rule, equal height, the source line at the foot (founder, second card page, card 4) */
 .regs { align-items: stretch; }
 .reg { display: flex; flex-direction: column; }
 .reg blockquote { border-left: 0; padding-left: 0; margin-top: 12px; display: flex; flex-direction: column; flex: 1; }
 .reg footer { margin-top: auto; padding-top: 12px; }
-
-/* the drawing on a phone: both chains side by side in one drawing, the yellow CiteOnly bar alongside the struck tools;
-   the ledgers are one short line each (founder, second card page, card 9) */
 .swap .short { display: none; }
 @media (max-width: 900px) {
   .swap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 26px auto 26px auto 26px auto 26px auto; gap: 0 12px; align-items: stretch; justify-items: stretch; }
@@ -673,8 +552,6 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
   .swap .t-docs { grid-area: 1 / 1; } .swap .t-a1 { grid-area: 2 / 1; } .swap .t-agent { grid-area: 3 / 1; } .swap .t-a2 { grid-area: 4 / 1; }
   .swap .t-guard { grid-area: 5 / 1; } .swap .t-a3 { grid-area: 6 / 1; } .swap .t-audit { grid-area: 7 / 1; } .swap .t-a4 { grid-area: 8 / 1; } .swap .t-ledger { grid-area: 9 / 1; }
   .swap .c-docs { grid-area: 1 / 2; } .swap .c-a1 { grid-area: 2 / 2; } .swap .c-model { grid-area: 3 / 2 / 8 / 3; } .swap .c-a2 { grid-area: 8 / 2; } .swap .c-ledger { grid-area: 9 / 2; }
-  /* the round-4 rules for .node.wide are more specific than .swap .node, so restate them here:
-     without this the bar renders as a block (its label at the top) and 48px wider than every other box */
   .swap .node.wide { display: flex; align-items: center; justify-content: center; grid-area: 3 / 2 / 8 / 3; grid-column: 2; width: auto; font-size: 1.05rem; padding: 10px 8px; }
   .swap .ledger { margin: 0; padding: 14px 12px; display: flex; align-items: center; justify-content: center; min-height: 64px; }
   .swap .ledger ul { display: none; }
@@ -683,14 +560,8 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
   .swap .ledger .face { top: -18px; right: -6px; width: 36px; height: 36px; }
   .hero .swap { margin-top: 36px; }
 }
-
-/* on a phone the hidden comparison leaves two grey sections touching, which read as one band (round of 15 Sep) */
 @media (max-width: 820px) { main.home #why { border-top: 1px solid var(--rule); } }
-
-/* the sector buttons line up with the heading, not with the wider panels (founder, d3) */
 .compare-wrap .demo-tabs { max-width: 1152px; margin-inline: auto; }
-/* on a phone the box carries its word and two rows of icons on one line: money and time. The third
-   icon went because the word above it already says hallucinations (founder, 15 Sep, twice) */
 @media (max-width: 900px) {
   .swap .ledger { display: block; padding: 13px 10px 15px; text-align: center; }
   .swap .ledger ul { display: flex; justify-content: center; align-items: center; gap: 14px; }
@@ -701,10 +572,6 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
   .swap .ledger .glyphs svg { width: 24px; height: 24px; }
   .swap .short { display: block; margin-bottom: 11px; font-weight: 700; font-size: 14px; }
 }
-
-/* the return, as a table (founder, 15 Sep 2026: "What the zero means for you" must tell ROI, and
-   stay a table so it can move to the home page later). Two columns, no fill: the founder's standing
-   note is that a highlight covers things half and looks bad. Stacks below 620px. */
 .roi { border-collapse: collapse; width: 100%; margin-top: 18px; font-size: 15px; }
 .roi th, .roi td { text-align: left; vertical-align: top; padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .roi th { font-weight: 700; color: var(--ink); width: 34%; padding-right: 26px; line-height: 1.3; }
@@ -717,16 +584,10 @@ h2 .brand-name .bk { font-weight: 400; color: var(--ink-3); }
   .roi th, .roi td { border-bottom: 0; padding: 0; }
   .roi td { margin-top: 4px; }
 }
-
-/* the film page, /film/: one video, unlinked from the nav. The frame never leaves the column and
-   never sets a height of its own, so a phone gets the same 16:9 box the desk does, only narrower. */
 .film { margin-top: 40px; max-width: 900px; }
 .film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--ink);
   border: 1.5px solid var(--ink); border-radius: 12px; }
 .film-file { margin-top: 18px; font-size: 15px; color: var(--ink-2); }
-
-/* The email field (founder, 2 Oct 2026, taps b4 and b6): the end of every page and after each benchmark demo.
-   Mobile-first; the row wraps, so nothing here needs a phone restatement. */
 .su { display: grid; gap: 8px; margin-top: 24px; max-width: 560px; }
 .su-label { font: 500 16px/1.35 var(--sans); color: var(--ink-2); }
 .su-row { display: flex; flex-wrap: wrap; gap: 8px; }
