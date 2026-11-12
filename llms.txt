@@ -3,16 +3,16 @@
 > CiteOnly answers questions only from the documents it is given. Guardrails are built in: it cannot invent a fact, and when the documents do not answer, it says so.
 
 ## Pages
-- [Talk to us about CiteOnly](https://citeonly.com/contact/): Tell us what your team gets asked. Book a call, drop your email, or write to sushant@citeonly.com.
-- [Privacy on citeonly.com](https://citeonly.com/privacy/): What citeonly.com counts: page views, through Cloudflare Web Analytics, with no cookies. The contact form is a Google Form; email goes to sushant@citeonly.com.
 - [About CiteOnly and who builds it](https://citeonly.com/about/): CiteOnly is built by Sushant Daga. 0 factual hallucinations: it answers from your documents alone, with guardrails built in.
+- [CiteOnly on CUAD: contract review, checked against lawyers](https://citeonly.com/benchmarks/contracts/): An early demonstration of CiteOnly on CUAD, the public contract review test: the whole checklist answered, nothing invented, fewer clauses missed.
+- [CiteOnly on FinQA: financial answers, worked out, nothing invented](https://citeonly.com/benchmarks/finance/): An early demonstration of CiteOnly on FinQA, the public test on annual reports: every answer worked out step by step, nothing invented.
 - [CiteOnly benchmarks: zero fabricated answers](https://citeonly.com/benchmarks/): Across thousands of questions and six test runs, no CiteOnly answer contained material that was not in the source documents. A regular AI model: 1 in 40.
+- [Talk to us about CiteOnly](https://citeonly.com/contact/): Tell us what your team gets asked. Book a call, drop your email, or write to sushant@citeonly.com.
 - [CiteOnly for customs: a provably optimal year of imports](https://citeonly.com/customs/): A year of imports through Indian customs, planned at the lowest cost, with the proof that no plan costs less.
 - [CiteOnly: 0 factual hallucinations, answers from your documents](https://citeonly.com/): 0 factual hallucinations. AI answers your team can sign off at a glance, from your documents alone.
+- [Privacy on citeonly.com](https://citeonly.com/privacy/): What citeonly.com counts: page views, through Cloudflare Web Analytics, with no cookies. The contact form is a Google Form; email goes to sushant@citeonly.com.
 - [What CiteOnly is: answers from your documents alone](https://citeonly.com/product/): What CiteOnly is: answers from your documents alone, with guardrails built in, so checking an answer is reading it.
 - [Who CiteOnly is for, and why it pays](https://citeonly.com/who/): For legal, financial services, pharma and healthcare teams, and any work that has to show what an answer rested on. What made-up answers cost, on the record.
-- [CiteOnly on FinQA: financial answers, worked out, nothing invented](https://citeonly.com/benchmarks/finance/): An early demonstration of CiteOnly on FinQA, the public test on annual reports: every answer worked out step by step, nothing invented.
-- [CiteOnly on CUAD: contract review, checked against lawyers](https://citeonly.com/benchmarks/contracts/): An early demonstration of CiteOnly on CUAD, the public contract review test: the whole checklist answered, nothing invented, fewer clauses missed.
 
 ## Contact
 - Email: sushant@citeonly.com
